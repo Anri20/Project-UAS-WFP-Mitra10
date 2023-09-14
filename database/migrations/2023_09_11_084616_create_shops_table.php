@@ -14,7 +14,7 @@ class CreateShopsTable extends Migration
     public function up()
     {
         Schema::create('shops', function (Blueprint $table) {
-            $table->unsignedBigInteger('idshops')->primary()->autoIncrement();
+            $table->unsignedBigInteger('idshops')->autoIncrement();
             $table->string('nama_toko');
             $table->string('whatsapp');
             $table->timestamps();

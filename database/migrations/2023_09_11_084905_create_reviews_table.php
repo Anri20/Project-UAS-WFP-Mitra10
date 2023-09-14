@@ -14,7 +14,7 @@ class CreateReviewsTable extends Migration
     public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->unsignedBigInteger('idreviews')->primary()->autoIncrement();
+            $table->unsignedBigInteger('idreviews')->autoIncrement();
             $table->string('isi_review');
             $table->enum('rating', ['1', '2', '3', '4', '5']);
             $table->timestamps();

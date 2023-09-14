@@ -14,7 +14,7 @@ class CreatePromosTable extends Migration
     public function up()
     {
         Schema::create('promos', function (Blueprint $table) {
-            $table->unsignedBigInteger('idpromos')->primary()->autoIncrement();
+            $table->unsignedBigInteger('idpromos')->autoIncrement();
             $table->string('nama_gambar_promo')->default('');
             $table->string('nama_promo');
             $table->string('deskripsi');

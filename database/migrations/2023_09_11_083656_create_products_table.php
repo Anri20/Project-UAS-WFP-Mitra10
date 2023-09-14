@@ -14,12 +14,12 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->unsignedBigInteger('idproducts')->primary()->autoIncrement();
+            $table->unsignedBigInteger('idproducts')->autoIncrement();
             $table->string('nama_produk');
             $table->longText('deskripsi');
             $table->integer('stok');
-            $table->double('harga', 8, 2);
-            $table->double('diskon', 1, 2);
+            $table->double('harga', 12, 2);
+            $table->double('diskon', 3, 2);
             $table->timestamps();
         });
     }

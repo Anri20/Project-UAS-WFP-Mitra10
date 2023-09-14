@@ -14,7 +14,8 @@ class CreateTransactionsTable extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->unsignedBigInteger('idtransactions')->primary()->autoIncrement();
+            $table->unsignedBigInteger('idtransactions')->autoIncrement();
+            $table->datetime('tanggal');
             $table->double('harga_total', 13, 2);
             $table->string('jenis_pembayaran');
             $table->timestamps();
