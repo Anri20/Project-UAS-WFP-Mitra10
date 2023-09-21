@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateShopAreasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->unsignedBigInteger('idcategories')->autoIncrement();
-            $table->string('nama')->nullable();
-            $table->foreignId('parent_category')->nullable()->constrained('categories', 'idcategories');
+        Schema::create('shop_areas', function (Blueprint $table) {
+            $table->unsignedBigInteger('idshopareas')->autoIncrement();
+            $table->string('nama');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('shop_areas');
     }
 }

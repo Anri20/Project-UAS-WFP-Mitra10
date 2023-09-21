@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAreasTable extends Migration
+class CreateCartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateAreasTable extends Migration
      */
     public function up()
     {
-        Schema::create('areas', function (Blueprint $table) {
-            $table->unsignedBigInteger('idareas')->autoIncrement();
-            $table->string('nama_area');
+        Schema::create('carts', function (Blueprint $table) {
+            $table->foreignId('customer')->constrained('customers', 'idcustomers');
+            $table->foreignId('product')->constrained('products', 'idproducts');
+            $table->unsignedInteger('jumlah');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateAreasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('areas');
+        Schema::dropIfExists('carts');
     }
 }
