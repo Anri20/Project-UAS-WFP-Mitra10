@@ -16,6 +16,7 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->unsignedBigInteger('idtransactions')->autoIncrement();
             $table->foreignId('customer')->constrained('customers', 'idcustomers');
+            $table->foreignId('promo')->nullable()->constrained('promos', 'idpromos');
             $table->datetime('tanggal');
             $table->unsignedDouble('total', 12, 2);
             $table->string('metode_pembayaran');
