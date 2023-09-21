@@ -15,9 +15,11 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->unsignedBigInteger('idtransactions')->autoIncrement();
+            $table->foreignId('customer')->constrained('customers', 'idcustomers');
             $table->datetime('tanggal');
-            $table->double('harga_total', 13, 2);
-            $table->string('jenis_pembayaran');
+            $table->unsignedDouble('total', 12, 2);
+            $table->string('metode_pembayaran');
+            $table->dateTime('tanggal_pembayaran')->nullable()->default(null);
             $table->timestamps();
         });
     }

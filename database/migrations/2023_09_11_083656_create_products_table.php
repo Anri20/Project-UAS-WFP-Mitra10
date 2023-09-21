@@ -15,11 +15,12 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->unsignedBigInteger('idproducts')->autoIncrement();
-            $table->string('nama_produk');
+            $table->foreignId('category')->constrained('categories', 'idcategories');
+            $table->foreignId('brand')->constrained('brands', 'idbrands');
+            $table->string('nama');
             $table->longText('deskripsi');
-            $table->integer('stok');
-            $table->double('harga', 12, 2);
-            $table->double('diskon', 3, 2);
+            $table->unsignedDouble('harga', 12, 2);
+            $table->unsignedDouble('diskon', 3, 2)->nullable();
             $table->timestamps();
         });
     }

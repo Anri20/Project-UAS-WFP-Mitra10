@@ -18,12 +18,11 @@ class CreateCustomersTable extends Migration
             $table->string('nama_depan');
             $table->string('nama_belakang');
             $table->string('email')->unique();
-            $table->string('alamat');
-            $table->string('whatsapp');
+            $table->string('nomor_whatsapp')->unique();
+            $table->string('password');
             $table->date('tanggal_lahir');
-            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
-            $table->string('pendidikan')->nullable();
-            $table->string('pekerjaan');
+            $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->text('alamat');
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShopsTable extends Migration
+class CreateBrandsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateShopsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shops', function (Blueprint $table) {
-            $table->unsignedBigInteger('idshops')->autoIncrement();
-            $table->string('nama_toko');
-            $table->string('whatsapp');
+        Schema::create('brands', function (Blueprint $table) {
+            $table->unsignedBigInteger('idbrands')->autoIncrement();
+            $table->string('nama')->unique();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateShopsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shops');
+        Schema::dropIfExists('brands');
     }
 }

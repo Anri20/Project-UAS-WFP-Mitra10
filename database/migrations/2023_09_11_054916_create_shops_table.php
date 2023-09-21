@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCartsTable extends Migration
+class CreateShopsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateCartsTable extends Migration
      */
     public function up()
     {
-        Schema::create('carts', function (Blueprint $table) {
-            $table->integer('jumlah_barang');
-            $table->string('jenis_pengiriman');
+        Schema::create('shops', function (Blueprint $table) {
+            $table->unsignedBigInteger('idshops')->autoIncrement();
+            $table->foreignId('shop_area')->constrained('shop_areas', 'idshopareas');
+            $table->string('nama');
+            $table->string('nomor_whatsapp');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateCartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('shops');
     }
 }
