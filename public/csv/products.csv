@@ -1,4 +1,4 @@
-idproducts;category;brand;nama;deskripsi;harga;diskon;created_at;updated_at
+idproducts;category_id;brand_id;nama;deskripsi;harga;diskon;created_at;updated_at
 1;48;1;Samsung AC Split Standart 0.5PK AR05TGHQAS + Material & Pemasangan;;3500000;;;
 2;48;2;Daikin Ac Split FTC25NV14 1PK Putih (Unit Only);;5000000;;;
 3;48;3;Electrolux Ac Split ESM05CRR-C1 0.5 PK Putih;;5000000;;;

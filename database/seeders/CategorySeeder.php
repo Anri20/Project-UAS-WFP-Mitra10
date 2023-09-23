@@ -33,7 +33,7 @@ class CategorySeeder extends Seeder
 
                 Category::create([
                     'nama' => $data[1],
-                    'parent_category' => $data[2],
+                    'parent_category_id' => $data[2],
                 ]);
             }
             $firstline = false;

@@ -1,4 +1,4 @@
-idcategories;nama;parent_category;created_at;updated_at
+idcategories;nama;parent_category_id;created_at;updated_at
 1;Appliances;;;
 2;Bathroom;;;
 3;Building Material;;;
