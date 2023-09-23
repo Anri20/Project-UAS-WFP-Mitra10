@@ -15,8 +15,8 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->unsignedBigInteger('idproducts')->autoIncrement();
-            $table->foreignId('category')->constrained('categories', 'idcategories');
-            $table->foreignId('brand')->constrained('brands', 'idbrands');
+            $table->foreignId('category_id')->constrained('categories', 'idcategories');
+            $table->foreignId('brand_id')->constrained('brands', 'idbrands');
             $table->string('nama');
             $table->longText('deskripsi');
             $table->unsignedDouble('harga', 12, 2);

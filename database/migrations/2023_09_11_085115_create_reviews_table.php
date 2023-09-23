@@ -15,8 +15,8 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->unsignedBigInteger('idreviews')->autoIncrement();
-            $table->foreignId('transaction')->constrained('transactions', 'idtransactions');
-            $table->foreignId('product')->constrained('products', 'idproducts');
+            $table->foreignId('transaction_id')->constrained('transactions', 'idtransactions');
+            $table->foreignId('product_id')->constrained('products', 'idproducts');
             $table->unsignedTinyInteger('rating');
             $table->text('ulasan')->nullable();
             $table->timestamps();

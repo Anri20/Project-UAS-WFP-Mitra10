@@ -16,7 +16,7 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->unsignedBigInteger('idcategories')->autoIncrement();
             $table->string('nama')->nullable();
-            $table->foreignId('parent_category')->nullable()->constrained('categories', 'idcategories');
+            $table->foreignId('parent_category_id')->nullable()->constrained('categories', 'idcategories');
             $table->timestamps();
         });
     }

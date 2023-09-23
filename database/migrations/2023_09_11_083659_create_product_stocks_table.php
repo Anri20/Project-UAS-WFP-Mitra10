@@ -14,8 +14,8 @@ class CreateProductStocksTable extends Migration
     public function up()
     {
         Schema::create('product_stocks', function (Blueprint $table) {
-            $table->foreignId('shop')->constrained('shops', 'idshops');
-            $table->foreignId('product')->constrained('products', 'idproducts');
+            $table->foreignId('shop_id')->constrained('shops', 'idshops');
+            $table->foreignId('product_id')->constrained('products', 'idproducts');
             $table->unsignedInteger('stok');
             $table->timestamps();
         });
