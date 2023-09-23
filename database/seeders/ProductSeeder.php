@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,8 +15,25 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('products')->insert([
-            
-        ]);
+        $csvFile = fopen(public_path('csv/products.csv'), 'r');
+
+        $firstline = true;
+        while (($data = fgetcsv($csvFile, 2000, ';')) !== FALSE) {
+            if (!$firstline) {
+                // dd($data);
+
+                Product::create([
+                    'category' => $data[1],
+                    'brand' => $data[2],
+                    'nama' => $data[3],
+                    'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    'harga' => $data[5],
+                    'diskon' => (rand(0, 16) / 100),
+                ]);
+            }
+            $firstline = false;
+        }
+
+        fclose($csvFile);
     }
 }
