@@ -70,7 +70,8 @@
                                             </td>
                                             <td class="align-middle">
                                                 <h6 class="mb-0">
-                                                    {{ $r->customer->nama_depan . ' ' . $r->customer->nama_belakang }}</h6>
+                                                    {{ $r->customer->nama_depan . ' ' . $r->customer->nama_belakang }}
+                                                </h6>
                                             </td>
                                             <td class="align-middle">
                                                 <h6 class="mb-0">{{ $r->rating }}</h6>
