@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ShopAreaController;
+use App\Http\Controllers\ProductStockController;
+use App\Http\Controllers\PromosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('shop', ShopController::class);
+Route::resource('shoparea', ShopAreaController::class);
+Route::resource('productstock', ProductStockController::class);
+Route::resource('promos', PromosController::class);
