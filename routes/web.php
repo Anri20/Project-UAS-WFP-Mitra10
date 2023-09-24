@@ -16,8 +16,16 @@ use App\Http\Controllers\PromosController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
+});
+
+Route::get('/home', function () {
+    return view('Home.index');
 });
 
 Route::resource('shop', ShopController::class);

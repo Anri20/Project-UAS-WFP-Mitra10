@@ -25,13 +25,15 @@ class CategorySeeder extends Seeder
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ';')) !== FALSE) {
             if (!$firstline) {
+                // dd($data);
+
                 if ($data[2] == "") {
                     $data[2] = null;
                 }
 
                 Category::create([
                     'nama' => $data[1],
-                    'parent_category' => $data[2],
+                    'parent_category_id' => $data[2],
                 ]);
             }
             $firstline = false;

@@ -15,7 +15,7 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->unsignedBigInteger('idshops')->autoIncrement();
-            $table->foreignId('shop_area')->constrained('shop_areas', 'idshopareas');
+            $table->foreignId('shop_area_id')->constrained('shop_areas', 'idshopareas');
             $table->string('nama');
             $table->string('nomor_whatsapp');
             $table->timestamps();
