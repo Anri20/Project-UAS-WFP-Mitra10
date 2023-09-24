@@ -57,32 +57,40 @@
                       <div class="text-center pt-3 pb-2">
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp"
                           alt="Check" width="60">
-                        <h2 class="my-4">Toko</h2>
+                        <h2 class="my-4">Product Stock</h2>
                       </div>
 
                       <table class="table text-white mb-0">
                         <thead>
                           <tr>
-                            <th scope="col">Nama Toko</th>
-                            <th scope="col">Area Toko</th>
-                            <th scope="col">Nomor Whatsapp</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">Nama Product</th>
+                            <th scope="col">Shop</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Price</th>
                           </tr>
                         </thead>
                         <tbody>
                             @foreach ($toko as $show)
                                 <tr class="fw-normal">
                                     <td class="align-middle">
-                                        <span>{{$show->nama_toko}}</span>
+                                        <span>{{$show->nama}}</span>
                                     </td>
                                     <td class="align-middle">
-                                         <h6 class="mb-0">{{$show->nama_area}}</h6>
+                                         <h6 class="mb-0">{{$show->nama_toko}}</h6>
                                     </td>
                                     <td class="align-middle">
-                                        <h6 class="mb-0">{{$show->nomor_whatsapp}}</h6>
+                                        <h6 class="mb-0">{{$show->nama_kategori}}</h6>
                                         </td>
                                     <td class="align-middle">
-                                        <button type="button" class="btn btn-primary">Beli di sini</button>
+                                        <h6 class="mb-0">{{$show->nama_brand}}</h6>
+                                    </td>
+                                    <td class="align-middle">
+                                        <h6 class="mb-0">{{$show->stok}}</h6>
+                                    </td>
+                                    <td class="align-middle">
+                                        <h6 class="mb-0">{{number_format($show->harga,0)}}</h6>
                                     </td>
                                 </tr>
                             @endforeach

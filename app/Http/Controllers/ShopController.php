@@ -15,7 +15,7 @@ class ShopController extends Controller
     public function index()
     {
         $toko = DB::table('shops')
-                ->join('shop_areas','shops.shop_area','shop_areas.idshopareas')
+                ->join('shop_areas','shops.shop_area_id','shop_areas.idshopareas')
                 ->get(
                     array(
                         'shops.nama as nama_toko',

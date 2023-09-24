@@ -14,13 +14,18 @@ class ProductStockController extends Controller
      */
     public function index()
     {
-        $toko = DB::table('shops')
-        ->join('shop_areas','shops.shop_area','shop_areas.idshopareas')
+        $toko = DB::table('products')
+        ->join('product_stocks','products.idproducts','product_stocks.product_id')
+        ->join('shops','shops.idshops','product_stocks.shop_id')
+        ->join('brands','brands.idbrands','products.brand_id')
+        ->join('categories','categories.idcategories','products.category_id')
         ->get(
             array(
+                'products.*',
+                'product_stocks.stok',
                 'shops.nama as nama_toko',
-                'shop_areas.nama as nama_area',
-                'shops.nomor_whatsapp'
+                'brands.nama as nama_brand',
+                'categories.nama as nama_kategori',
 
             )
         );
