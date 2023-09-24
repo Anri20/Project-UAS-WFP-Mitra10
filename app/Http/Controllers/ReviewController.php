@@ -14,7 +14,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $reviews = Review::all();
+        return view('Week4.Review.index', compact('reviews'));
     }
 
     /**

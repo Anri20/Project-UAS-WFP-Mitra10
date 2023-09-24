@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('category_id')->constrained('categories', 'idcategories');
             $table->foreignId('brand_id')->constrained('brands', 'idbrands');
             $table->string('nama');
+            $table->string('gambar')->default('');
             $table->longText('deskripsi');
             $table->unsignedDouble('harga', 12, 2);
             $table->unsignedDouble('diskon', 3, 2)->nullable();

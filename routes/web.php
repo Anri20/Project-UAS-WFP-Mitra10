@@ -24,11 +24,12 @@ Route::get('/', function () {
     return redirect('/home');
 });
 
-Route::get('/home', function () {
-    return view('Home.index');
-});
+Route::resource('home', 'ProductController');
+Route::resource('brand', 'BrandController');
+Route::resource('category', 'CategoryController');
+Route::resource('review', 'ReviewController');
 
-Route::resource('shop', ShopController::class);
-Route::resource('shoparea', ShopAreaController::class);
-Route::resource('productstock', ProductStockController::class);
-Route::resource('promos', PromosController::class);
+Route::resource('shop', 'ShopController');
+// Route::resource('shoparea', 'ShopAreaController');
+Route::resource('productstock', 'ProductStockController');
+Route::resource('promos', 'PromosController');

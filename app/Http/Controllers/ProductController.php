@@ -12,9 +12,16 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function test()
+    {
+    }
+
     public function index()
     {
-        //
+        $products = Product::all();
+        // dd($products);
+
+        return view('Home.index', compact('products'));
     }
 
     /**

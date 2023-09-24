@@ -17,6 +17,7 @@ class CreateReviewsTable extends Migration
             $table->unsignedBigInteger('idreviews')->autoIncrement();
             $table->foreignId('transaction_id')->constrained('transactions', 'idtransactions');
             $table->foreignId('product_id')->constrained('products', 'idproducts');
+            $table->foreignId('customer_id')->constrained('customers', 'idcustomers');
             $table->unsignedTinyInteger('rating');
             $table->text('ulasan')->nullable();
             $table->timestamps();
