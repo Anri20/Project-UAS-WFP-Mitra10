@@ -33,3 +33,5 @@ Route::resource('shop', 'ShopController');
 // Route::resource('shoparea', 'ShopAreaController');
 Route::resource('productstock', 'ProductStockController');
 Route::resource('promos', 'PromosController');
+
+Route::resource('transactions', 'TransactionController');
