@@ -71,7 +71,7 @@
                 @foreach ($promos as $show)
                     <div class="col" style="padding:10px;">
                         <div class="card">
-                            <img width="100" src="{{asset($show->gambar)}}" class="card-img-top" alt="Fissure in Sandstone"/>
+                            <img width="100" src="{{asset('image/'.$show->gambar)}}" class="card-img-top" alt="Fissure in Sandstone"/>
                             <div class="card-body">
                             <h5 class="card-title">{{$show->nama}} ({{$show->diskon}}%)</h5>
                             <p class="card-text">{{$show->deskripsi}}</p>

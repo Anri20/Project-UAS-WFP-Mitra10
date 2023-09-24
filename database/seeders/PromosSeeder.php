@@ -17,9 +17,9 @@ class PromosSeeder extends Seeder
     {
         DB::table('Promos')->insert(
             [
-                'gambar' => 'image/batman.jpg',
-                'nama' => 'Action Figure',
-                'deskripsi' => 'Diskon Batman Warframe',
+                'gambar' => 'christmassale.jpeg',
+                'nama' => 'Christmass Saleee',
+                'deskripsi' => 'Diskon Chirsmass',
                 'kode' => rand(000,999),
                 'diskon' => rand(0,99)/10
             ]
@@ -27,9 +27,9 @@ class PromosSeeder extends Seeder
 
         DB::table('Promos')->insert(
             [
-                'gambar' => 'image/infinity.png',
-                'nama' => 'Infitiy',
-                'deskripsi' => 'GAS POLL',
+                'gambar' => 'flashsale.jpg',
+                'nama' => 'Flash Sale',
+                'deskripsi' => 'Sale Cepat',
                 'kode' => rand(000,999),
                 'diskon' => rand(0,99)/10
             ]
@@ -37,9 +37,9 @@ class PromosSeeder extends Seeder
 
         DB::table('Promos')->insert(
             [
-                'gambar' => 'image/Guru.jpg',
-                'nama' => 'Guru',
-                'deskripsi' => 'Diskon Sekolah',
+                'gambar' => 'midnightsale.jpg',
+                'nama' => 'Midnight Sale',
+                'deskripsi' => 'Diskon malam',
                 'kode' => rand(000,999),
                 'diskon' => rand(0,99)/10
             ]
@@ -47,9 +47,9 @@ class PromosSeeder extends Seeder
 
         DB::table('Promos')->insert(
             [
-                'gambar' => 'image/joker.jpg',
-                'nama' => 'joker',
-                'deskripsi' => 'Diskon Lawak',
+                'gambar' => 'ramadansale.png',
+                'nama' => 'Ramadan',
+                'deskripsi' => 'Ramadan Sale',
                 'kode' => rand(000,999),
                 'diskon' => rand(0,99)/10
             ]
@@ -57,9 +57,9 @@ class PromosSeeder extends Seeder
 
         DB::table('Promos')->insert(
             [
-                'gambar' => 'image/tidakbisa.jpg',
-                'nama' => 'tidak bisa',
-                'deskripsi' => 'bebas',
+                'gambar' => 'sale.jpg',
+                'nama' => 'Sale',
+                'deskripsi' => 'Sale',
                 'kode' => rand(000,999),
                 'diskon' => rand(0,99)/10
             ]
