@@ -11,12 +11,13 @@ class Category extends Model
 
     protected $primaryKey = 'idcategories';
 
-    public function product()
+    // Default Relation
+    public function products()
     {
         return $this->hasMany(Product::class, "category_id", "idcategories");
     }
 
-    public function child_category()
+    public function child_categories()
     {
         return $this->hasMany(Category::class, "parent_category_id", "idcategories");
     }

@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Shop By Brand</title>
+    <title>Home</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
@@ -71,17 +71,64 @@
         </div>
     </header>
 
-    <main>
-        <div class="container">
-            @for($i=0; $i<)
-            <div class="row">
-                <div class="col">
+    <main role="main">
+        <div class="album py-5 bg-light">
+            <div class="container">
 
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="{{ asset('assets/images/' . $product->gambar . '.jpg') }}"
+                                width="100%" height="200">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class='d-flex flex-column '>
+                                        <s>{{ 'Rp.' . number_format($product->harga, 2) }}</s>
+                                        <b style='color:red;'>
+                                            {{ 'Rp.' . number_format($product->harga * (1 - $product->diskon), 2) }}
+                                        </b>
+                                    </div>
+                                    <div class='d-flex justify-content-center align-items-center rounded-circle text-white'
+                                        style='background-color:#f32e3b; width:40px; height:40px'>
+                                        <b>{{ $product->diskon * 100 }}%</b>
+                                    </div>
+                                </div>
+                                <h5>{{ $product->nama }}</h5>
+                                <p class="card-text">
+                                    <?php
+                                    $desc = $product->deskripsi;
+                                    $words = explode(' ', $product->deskripsi);
+                                    $thres = 20;
+                                    // if words in desc is longer than $thres words then cut
+                                    if (str_word_count($product->deskripsi) > $thres) {
+                                        $desc = array_slice($words, 0, $thres - 1);
+                                        $desc = implode(' ', $desc);
+                                    }
+                                    echo $desc . ' ...';
+                                    ?>
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">{{ $product->category->nama }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            @endfor
         </div>
+
     </main>
+
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+            <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a
+                    href="../../getting-started/">getting started guide</a>.</p>
+        </div>
+    </footer>
 </body>
 
 </html>

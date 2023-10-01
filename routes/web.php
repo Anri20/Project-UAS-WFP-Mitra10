@@ -39,3 +39,7 @@ Route::resource('transactions', 'TransactionController');
 // ===============================================================================
 
 Route::get('/testhome', 'ProductController@testhome')->name('testhome');
+Route::get('/report/category/avgprice', 'CategoryController@reportCatAvgPrice')->name('reportCatAvgPrice');
+
+Route::get('/brand/tugas/week4', 'BrandController@week4')->name('brandweek4');
+Route::get('/brand/tugas/week5', 'BrandController@week5')->name('brandweek5');
