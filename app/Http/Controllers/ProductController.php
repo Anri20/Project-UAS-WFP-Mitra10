@@ -86,4 +86,12 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function testhome()
+    {
+        $products = Product::all();
+        // dd($products);
+
+        return view('Home.test', compact('products'));
+    }
 }

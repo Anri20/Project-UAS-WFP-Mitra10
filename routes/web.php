@@ -35,3 +35,7 @@ Route::resource('productstock', 'ProductStockController');
 Route::resource('promos', 'PromosController');
 
 Route::resource('transactions', 'TransactionController');
+
+// ===============================================================================
+
+Route::get('/testhome', 'ProductController@testhome')->name('testhome');

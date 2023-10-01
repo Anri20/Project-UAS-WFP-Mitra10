@@ -17,7 +17,8 @@ class BrandController extends Controller
         $brands = Brand::all();
         // dd($brands);
 
-        return view('Week4.Brand.index', compact('brands'));
+        // return view('Week4.Brand.index', compact('brands'));
+        return view('Brand.index', compact('brands'));
     }
 
     /**
