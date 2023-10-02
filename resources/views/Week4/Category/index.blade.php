@@ -67,7 +67,9 @@
                                                 <h6 class="mb-0">{{ $c->nama }}</h6>
                                             </td>
                                             <td class="align-middle">
-                                                <h6 class="mb-0">{{ ($c->parent_category == '')? $c->parent_category: $c->parent_category->nama}}</h6>
+                                                <h6 class="mb-0">
+                                                    {{ $c->parent_category == '' ? $c->parent_category : $c->parent_category->nama }}
+                                                </h6>
                                             </td>
                                         </tr>
                                     @endforeach

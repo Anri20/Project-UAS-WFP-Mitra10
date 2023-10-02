@@ -112,4 +112,30 @@ class BrandController extends Controller
 
         return view('Week5.Brand.index', compact('brands'));
     }
+
+    public function week6()
+    {
+        $brands = DB::table('brands as b')
+            ->join('products as p', 'b.idbrands', '=', 'p.brand_id')
+            ->select('b.nama', DB::raw('count(b.nama) as \'supplied_products\''))
+            ->groupBy('b.nama')
+            ->orderBy(DB::raw('count(b.nama)'), 'asc')
+            ->get();
+        // dd($brands);
+
+        return view('Week6.Brand.index', compact('brands'));
+    }
+
+    public function week6Stock()
+    {
+        $brands = DB::table('brands as b')
+            ->join('products as p', 'b.idbrands', '=', 'p.brand_id')
+            ->select('b.nama', DB::raw('count(b.nama) as \'supplied_products\''))
+            ->groupBy('b.nama')
+            ->orderBy(DB::raw('count(b.nama)'), 'asc')
+            ->get();
+        // dd($brands);
+
+        return view('Week6.Brand.stock', compact('brands'));
+    }
 }
