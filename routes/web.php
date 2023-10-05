@@ -5,6 +5,9 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ShopAreaController;
 use App\Http\Controllers\ProductStockController;
 use App\Http\Controllers\PromosController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ReportproductController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +31,13 @@ Route::get('/home', function () {
     return view('Home.index');
 });
 
+Route::get('/conquer', function () {
+    return view('layout.conquer');
+});
+
 Route::resource('shop', ShopController::class);
 Route::resource('shoparea', ShopAreaController::class);
 Route::resource('productstock', ProductStockController::class);
 Route::resource('promos', PromosController::class);
+Route::resource('report', ReportController::class);
+Route::resource('reportjumlah', ReportproductController::class);
