@@ -11,8 +11,10 @@ class TransactionFactory extends Factory
         $tanggal = $this->faker->dateTimeBetween('-30 days');
         return [
             'tanggal' => $tanggal,
-            'metode_pembayaran' => 'cash',
-            'tanggal_pembayaran' => $this->faker->dateTimeBetween($tanggal),
+            'metode_pembayaran' => $this->faker->randomElement(['cash', 'visa', 'mastercard']),
+            'tanggal_pembayaran' => $this->faker->boolean(80) ?
+                $this->faker->dateTimeBetween($tanggal) :
+                null,
         ];
     }
 }

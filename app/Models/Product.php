@@ -9,13 +9,20 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'idproducts';
+
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category', 'idcategories');
+        return $this->belongsTo(Category::class, 'category_id', 'idcategories');
     }
 
     public function brand()
     {
-        return $this->belongsTo(Brand::class, 'brand', 'idbrands');
+        return $this->belongsTo(Brand::class, 'brand_id', 'idbrands');
+    }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class, 'product_id', 'idproducts');
     }
 }

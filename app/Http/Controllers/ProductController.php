@@ -12,9 +12,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+        $products = Product::all();
+        // dd($products);
+
+        return view('Home.index', compact('products'));
     }
 
     /**
@@ -44,9 +48,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $product = Product::find($id);
+        // dd($product);
+
+        return view('Home.show', compact('product'));
     }
 
     /**
@@ -81,5 +88,21 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function week6()
+    {
+        $products = Product::all();
+        // dd($products);
+
+        return view('Week6.Dashboard.index', compact('products'));
+    }
+
+    public function week6Stock()
+    {
+        $products = Product::all();
+        // dd($products);
+
+        return view('Week6.Dashboard.stock', compact('products'));
     }
 }

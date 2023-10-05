@@ -14,7 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        // dd($categories);
+
+        return view('Category.index', compact('categories'));
     }
 
     /**
@@ -81,5 +84,64 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+
+    public function week4()
+    {
+        $categories = Category::all();
+
+        return view('Week4.Category.index', compact('categories'));
+    }
+
+    public function reportCatAvgPrice()
+    {
+        $categories = Category::all();
+        // dd($categories);
+        foreach ($categories as $c) {
+            $category_products = $c->products;
+            $avgHarga = 0;
+            if (count($category_products) != 0) {
+                $arrHarga = [];
+                foreach ($category_products as $cp) {
+                    array_push($arrHarga, $cp->harga * (1 - $cp->diskon));
+                    // echo $cp.'<br>';
+                }
+                // dd($arrHarga);
+                $avgHarga = round((array_sum($arrHarga)) / count($arrHarga), 2);
+            }
+            $c['avgHarga'] = $avgHarga;
+        }
+
+        return view('Week5.Category.index', compact('categories'));
+    }
+
+    public function week6()
+    {
+        $categories = Category::all();
+        // dd($categories);
+        foreach ($categories as $c) {
+            $category_products = $c->products;
+            $avgHarga = 0;
+            if (count($category_products) != 0) {
+                $arrHarga = [];
+                foreach ($category_products as $cp) {
+                    array_push($arrHarga, $cp->harga * (1 - $cp->diskon));
+                    // echo $cp.'<br>';
+                }
+                // dd($arrHarga);
+                $avgHarga = round((array_sum($arrHarga)) / count($arrHarga), 2);
+            }
+            $c['avgHarga'] = $avgHarga;
+        }
+
+        return view('Week6.Category.index', compact('categories'));
+    }
+
+    public function week6Stock()
+    {
+        $categories = Category::all();
+        // dd($categories);
+
+        return view('Week6.Category.stock', compact('categories'));
     }
 }

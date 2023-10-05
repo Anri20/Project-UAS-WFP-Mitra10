@@ -9,13 +9,21 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function product()
+    protected $primaryKey = 'idcategories';
+
+    // Default Relation
+    public function products()
     {
-        return $this->hasMany(Product::class, "category", "idcategories");
+        return $this->hasMany(Product::class, "category_id", "idcategories");
     }
 
-    public function category()
+    public function child_categories()
     {
-        return $this->hasMany(Category::class, "parent_category", "idcategories");
+        return $this->hasMany(Category::class, "parent_category_id", "idcategories");
+    }
+
+    public function parent_category()
+    {
+        return $this->belongsTo(Category::class, "parent_category_id", "idcategories");
     }
 }

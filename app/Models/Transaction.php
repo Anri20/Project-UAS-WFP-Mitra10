@@ -11,8 +11,17 @@ class Transaction extends Model
 
     protected $primaryKey = 'idtransactions';
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id', 'idcustomers');
+    }
+
     public function items()
     {
         return $this->hasMany(TransactionItem::class, 'transaction_id', 'idtransactions');
+    }
+
+    public function review(){
+        return $this->hasMany(Review::class, 'transaction_id', 'idtransactions');
     }
 }
