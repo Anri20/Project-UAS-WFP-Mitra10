@@ -89,20 +89,4 @@ class ProductController extends Controller
     {
         //
     }
-
-    public function week6()
-    {
-        $products = Product::all();
-        // dd($products);
-
-        return view('Week6.Dashboard.index', compact('products'));
-    }
-
-    public function week6Stock()
-    {
-        $products = Product::all();
-        // dd($products);
-
-        return view('Week6.Dashboard.stock', compact('products'));
-    }
 }
