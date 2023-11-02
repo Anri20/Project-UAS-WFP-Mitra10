@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->foreignId('customer_id')->nullable()->constrained('customers', 'idcustomers');
-            $table->string('role');
         });
     }
 
