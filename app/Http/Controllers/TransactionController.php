@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -13,7 +14,7 @@ class TransactionController extends Controller
             Transaction::with(['customer', 'items', 'items.product'])
                 ->orderBy('tanggal', 'desc')
                 ->get();
-        $totalSales = $transactions->sum(fn ($t) => $t->total);
+        $totalSales = $transactions->sum(fn($t) => $t->total);
         return view(
             'transaction.index',
             [
@@ -103,5 +104,17 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         //
+    }
+
+    public function top()
+    {
+        $customers = DB::table('transactions')
+            ->selectRaw('SUM(transactions.total) AS total, customers.nama_depan, customers.nama_belakang, customers.email, customers.nomor_whatsapp')
+            ->join('customers', 'customers.idcustomers', '=', 'transactions.customer_id')
+            ->groupBy('transactions.customer_id', 'customers.nama_depan', 'customers.nama_belakang', 'customers.email', 'customers.nomor_whatsapp')
+            ->orderByDesc('total')
+            ->get();
+
+        return view('report.largest_transaction', compact('customers'));
     }
 }

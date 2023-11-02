@@ -50,6 +50,10 @@ Route::resource('promos', 'PromosController');
 
 Route::get('transactions/popover/{transaction}/items', 'TransactionController@items_popover')
     ->name('transaction.items.popover');
+
 Route::post('transactions/alert', 'TransactionController@alert')
     ->name('transaction.alert');
+
+Route::get('/transactions/top', 'TransactionController@top');
+
 Route::resource('transactions', 'TransactionController');
