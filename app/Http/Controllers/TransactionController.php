@@ -23,6 +23,22 @@ class TransactionController extends Controller
         );
     }
 
+    public function items_popover(Transaction $transaction)
+    {
+        $transaction->load(['items', 'items.product']);
+        return view(
+            'transaction.items_popover',
+            [
+                'items' => $transaction->items,
+            ],
+        );
+    }
+
+    public function alert()
+    {
+        return view('transaction/alert');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
