@@ -37,14 +37,10 @@ Route::get('/conquer', function () {
 });
 
 Route::resource('shop', ShopController::class);
-Route::resource('shoparea', ShopAreaController::class);
 Route::resource('productstock', ProductStockController::class);
 Route::resource('promos', PromosController::class);
-Route::resource('report', ReportController::class);
-Route::resource('reportjumlah', ReportproductController::class);
 
 Route::resource('shop', 'ShopController');
-// Route::resource('shoparea', 'ShopAreaController');
 Route::resource('productstock', 'ProductStockController');
 Route::resource('promos', 'PromosController');
 

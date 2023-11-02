@@ -15,7 +15,7 @@ class CustomerSeeder extends Seeder
                 ->create();
 
             User::factory()
-                ->customer()
+                // ->customer()
                 ->state([
                     'name' => "$customer->nama_depan $customer->nama_belakang",
                     'email' => $customer->email,
