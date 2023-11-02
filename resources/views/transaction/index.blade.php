@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
         rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -49,6 +50,7 @@
 <body>
     <section class="bg-gray-50 dark:bg-gray-900 py-3 sm:py-5">
         <div class="px-4 mx-auto max-w-screen-2xl lg:px-12">
+            <div id="alert"></div>
             <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
                 <div
                     class="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
@@ -78,7 +80,8 @@
                             Add new transaction
                         </button>
                         <button type="button"
-                            class="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                            class="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                            onclick="showAlert()">
                             <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                                 fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -147,7 +150,9 @@
                                         </div>
 									</td>
 									<td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-right">
-                                        Rp{{ number_format($transaction->total, 2, ',', '.') }}
+                                        <a href="#" class="underline" data-items-popover="{{ $transaction->idtransactions }}">
+                                            Rp{{ number_format($transaction->total, 2, ',', '.') }}
+                                        </a>
 									</td>
                                     <td class="px-4 py-2 text-center">
                                         @if ($transaction->metode_pembayaran == 'visa')
@@ -247,6 +252,16 @@
             </div>
         </div>
     </section>
+    <div id="popover-items" role="tooltip" class="absolute z-10 invisible inline-block w-100 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-md opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+        <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+            <h3 class="font-semibold text-gray-900 dark:text-white">
+                Item transaksi
+            </h3>
+        </div>
+        <div id="items-popover" class="px-3 py-2">
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 
     <script>
@@ -266,6 +281,38 @@
                 });
             });
         });
+
+        function showAlert() {
+            fetch('{{ route('transaction.alert') }}', {
+                method: 'post',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+            }).then(response => response.text()).then(html => {
+                document.getElementById('alert').innerHTML = html
+            })
+        }
+
+        document.querySelectorAll('[data-items-popover]').forEach(trigger => {
+            const popoverOptions = {
+                placement: 'bottom',
+                triggerType: 'none',
+                onHide: () => {
+                    console.log('popover hide')
+                },
+            }
+
+            const popover = new Popover(document.getElementById('popover-items'), trigger, popoverOptions)
+
+            trigger.addEventListener('click', e => {
+                const transactionId = e.target.getAttribute('data-items-popover')
+                const url = '{{ url('transactions/popover/$id/items') }}'.replace('$id', transactionId)
+                fetch(url).then(response => response.text()).then(html => {
+                    document.getElementById('items-popover').innerHTML = html
+                    popover.show()
+                })
+            })
+        })
     </script>
 
 </body>
