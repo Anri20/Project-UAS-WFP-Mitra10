@@ -1,6 +1,10 @@
 @extends('layouts.template')
 {{-- @extends('layout.conquer') --}}
 
+@section('title')
+<title>Home</title>    
+@endsection
+
 @section('content')
     <main role="main">
         <div class="album py-5 bg-light">

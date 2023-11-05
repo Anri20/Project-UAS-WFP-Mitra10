@@ -1,5 +1,10 @@
 @extends('layouts.template')
 
+@section('title')
+<title>Promo</title>
+    
+@endsection
+
 @section('head')
     {{-- <title>{{ $page->seo_title }}</title> --}}
 

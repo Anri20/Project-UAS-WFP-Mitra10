@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Home</title>
+    @yield('title')
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
@@ -26,7 +26,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     {{-- FontAwesome 6.2.1 CDN --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
@@ -54,21 +55,13 @@
         </div>
     </header> --}}
 
-    <nav class="navbar navbar-expand-lg sticky-top bg-dark"
-        style="background-color: #ffff; box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.3);">
+    <nav class="navbar navbar-expand-lg sticky-top bg-dark">
         <div class="container-fluid gap-5">
             <a class="navbar-brand" href="/">
                 {{-- <img src="{{ asset('assets') }}/logo/Logo_IG_Header.png" alt="Logo IGXXX" style="max-height: 40px"> --}}
             </a>
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                        <path
-                            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                    </svg></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse" style="justify-content: center;">
 
+            <div class="collapse navbar-collapse" id="navbarCollapse" style="justify-content: center;">
 
                 <ul class="navbar-nav mb-2 mb-lg-0 gap-4">
                     <li class="nav-item">
@@ -77,15 +70,16 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white" style="padding-left:0.5em" aria-current="page"
-                            href="{{ route('home.index') }}">All Categories</a>
+                            href="{{ route('home.index') }}"> <i class="fa-solid fa-bars"></i>&nbsp; All Categories</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white" style="padding-left:0.5em" aria-current="page"
-                            href="{{ route('brand.index') }}">Shop By Brand</a>
+                            href="{{ route('brand.index') }}"> <i class="fa-regular fa-copyright"></i>&nbsp; Shop By
+                            Brand</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white" style="padding-left:0.5em" aria-current="page"
-                            href="{{ route('promos.index') }}">Promotion</a>
+                            href="{{ route('promos.index') }}"> <i class="fa-solid fa-ticket"></i>&nbsp; Promotion</a>
                     </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link active text-white" style="padding-left:0.5em" aria-current="page"
@@ -93,15 +87,20 @@
                     </li> --}}
                     <li class="nav-item">
                         <a class="nav-link active text-white" style="padding-left:0.5em" aria-current="page"
-                            href="{{ route('home.index') }}">Our Service</a>
+                            href="{{ route('home.index') }}"> <i class="fa-solid fa-wrench"></i>&nbsp; Our Service</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white" style="padding-left:0.5em" aria-current="page"
-                            href="{{ route('home.index') }}">Membership</a>
+                            href="{{ route('home.index') }}"> <i class="fa-regular fa-credit-card"></i>&nbsp;
+                            Membership</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white" style="padding-left:0.5em" aria-current="page"
-                            href="{{ route('home.index') }}">Whatsapp</a>
+                            href="{{ route('home.index') }}"> <i class="fa-brands fa-whatsapp"></i>&nbsp; Whatsapp</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" style="padding-left:0.5em" aria-current="page"
+                            href="{{ route('home.admin') }}"> <i class="fa-solid fa-lock"></i>&nbsp; Admin</a>
                     </li>
                 </ul>
 

@@ -40,6 +40,14 @@ Route::resource('shop', 'ShopController');
 Route::resource('productstock', 'ProductStockController');
 Route::resource('promos', 'PromosController');
 
+// ======================================================== Admin ====================================================================
+
+// Home
+Route::get('/admin', function(){
+    return view ('Admin.Home.index');
+})->name('home.admin');
+
+// Transaction
 Route::get('transactions/popover/{transaction}/items', 'TransactionController@items_popover')
     ->name('transaction.items.popover');
 

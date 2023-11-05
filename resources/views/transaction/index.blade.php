@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.conquer')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
-        rel="stylesheet">
+@section('css')
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -45,9 +39,9 @@
     </script>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
-</head>
+@endsection
 
-<body>
+@section('content')
     <section class="bg-gray-50 dark:bg-gray-900 py-3 sm:py-5">
         <div class="px-4 mx-auto max-w-screen-2xl lg:px-12">
             <div id="alert"></div>
@@ -82,8 +76,8 @@
                         <button type="button"
                             class="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                             onclick="showAlert()">
-                            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99">
                                 </path>
@@ -92,8 +86,8 @@
                         </button>
                         <button type="button"
                             class="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5">
                                 </path>
@@ -123,20 +117,21 @@
                             </tr>
                         </thead>
                         <tbody>
-							@foreach ($transactions as $transaction)
-								<tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-									<td class="w-4 px-4 py-3">
-										<div class="flex items-center">
-											<input id="checkbox-table-search-1" type="checkbox"
-												onclick="event.stopPropagation()"
-												class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-											<label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-										</div>
-									</td>
+                            @foreach ($transactions as $transaction)
+                                <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <td class="w-4 px-4 py-3">
+                                        <div class="flex items-center">
+                                            <input id="checkbox-table-search-1" type="checkbox"
+                                                onclick="event.stopPropagation()"
+                                                class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                                        </div>
+                                    </td>
                                     <td class="px-4 py-2 text-gray-900 whitespace-nowrap dark:text-white text-right">
                                         {{ (new Carbon\Carbon($transaction->tanggal))->toFormattedDayDateString() }}
-									</td>
-									<td class="flex items-center px-4 py-2 text-gray-900 whitespace-nowrap dark:text-white text-left">
+                                    </td>
+                                    <td
+                                        class="flex items-center px-4 py-2 text-gray-900 whitespace-nowrap dark:text-white text-left">
                                         <div>
                                             <div class="font-medium">
                                                 {{ $transaction->customer->namaLengkap() }}
@@ -148,32 +143,39 @@
                                                 {{ $transaction->customer->email }}
                                             </div>
                                         </div>
-									</td>
-									<td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-right">
-                                        <a href="#" class="underline" data-items-popover="{{ $transaction->idtransactions }}">
+                                    </td>
+                                    <td
+                                        class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-right">
+                                        <a href="#" class="underline"
+                                            data-items-popover="{{ $transaction->idtransactions }}">
                                             Rp{{ number_format($transaction->total, 2, ',', '.') }}
                                         </a>
-									</td>
+                                    </td>
                                     <td class="px-4 py-2 text-center">
                                         @if ($transaction->metode_pembayaran == 'visa')
-                                            <img class="mx-auto w-12 h-8" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="VISA logo">
+                                            <img class="mx-auto w-12 h-8"
+                                                src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
+                                                alt="VISA logo">
                                         @elseif ($transaction->metode_pembayaran == 'mastercard')
-                                            <img class="mx-auto w-16 h-8" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard logo">
+                                            <img class="mx-auto w-16 h-8"
+                                                src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+                                                alt="Mastercard logo">
                                         @elseif ($transaction->metode_pembayaran == 'cash')
                                             <span
                                                 class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
                                                 {{ ucfirst($transaction->metode_pembayaran) }}
                                             </span>
                                         @endif
-									</td>
+                                    </td>
                                     <td class="px-4 py-2 text-gray-900 whitespace-nowrap dark:text-white text-right">
                                         @if ($transaction->tanggal_pembayaran)
                                             {{ (new Carbon\Carbon($transaction->tanggal_pembayaran))->toFormattedDayDateString() }}
                                         @else
                                             -
                                         @endif
-									</td>
-									<td class="px-4 py-2 font-medium text-gray-900 text-center whitespace-nowrap dark:text-white">
+                                    </td>
+                                    <td
+                                        class="px-4 py-2 font-medium text-gray-900 text-center whitespace-nowrap dark:text-white">
                                         @if ($transaction->tanggal_pembayaran)
                                             <span
                                                 class="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
@@ -185,12 +187,12 @@
                                                 Belum Lunas
                                             </span>
                                         @endif
-									</td>
-									<td class="px-4 py-2 text-gray-900 whitespace-nowrap dark:text-white">
+                                    </td>
+                                    <td class="px-4 py-2 text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ (new Carbon\Carbon($transaction->updated_at))->diffForHumans() }}
                                     </td>
-								</tr>
-							@endforeach
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -252,7 +254,8 @@
             </div>
         </div>
     </section>
-    <div id="popover-items" role="tooltip" class="absolute z-10 invisible inline-block w-100 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-md opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+    <div id="popover-items" role="tooltip"
+        class="absolute z-10 invisible inline-block w-100 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-md opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
         <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
             <h3 class="font-semibold text-gray-900 dark:text-white">
                 Item transaksi
@@ -314,7 +317,4 @@
             })
         })
     </script>
-
-</body>
-
-</html>
+@endsection
