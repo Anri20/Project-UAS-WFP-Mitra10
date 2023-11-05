@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.template')
 {{-- @extends('layout.conquer') --}}
 
 @section('content')

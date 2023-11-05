@@ -36,10 +36,6 @@ Route::get('/conquer', function () {
     return view('layout.conquer');
 });
 
-Route::resource('shop', ShopController::class);
-Route::resource('productstock', ProductStockController::class);
-Route::resource('promos', PromosController::class);
-
 Route::resource('shop', 'ShopController');
 Route::resource('productstock', 'ProductStockController');
 Route::resource('promos', 'PromosController');
