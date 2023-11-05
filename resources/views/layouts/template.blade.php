@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         crossorigin="anonymous">
 
+    {{-- JQUERY CDN --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
 
@@ -70,7 +73,8 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white" style="padding-left:0.5em" aria-current="page"
-                            href="{{ route('home.index') }}"> <i class="fa-solid fa-bars"></i>&nbsp; All Categories</a>
+                            href="{{ route('category.index') }}"> <i class="fa-solid fa-bars"></i>&nbsp; All
+                            Categories</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white" style="padding-left:0.5em" aria-current="page"

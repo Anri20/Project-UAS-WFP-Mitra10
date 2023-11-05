@@ -30,6 +30,8 @@ Route::get('/', function () {
 Route::resource('home', 'ProductController');
 Route::resource('brand', 'BrandController');
 Route::resource('category', 'CategoryController');
+Route::get('/category/display/sub_category', 'CategoryController@displayCategories')->name('displayCategories');
+
 Route::resource('review', 'ReviewController');
 
 Route::get('/conquer', function () {
