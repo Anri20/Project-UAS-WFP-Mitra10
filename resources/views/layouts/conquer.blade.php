@@ -28,24 +28,24 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet"
         type="text/css" />
-    <link href="conquer2/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="conquer2/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="conquer2/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="conquer2/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('conquer2/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('conquer2/plugins/simple-line-icons/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('conquer2/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('conquer2/plugins/uniform/css/uniform.default.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
-    <link href="conquer2/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
-    <link href="conquer2/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
-    <link href="conquer2/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('conquer2/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('conquer2/plugins/fullcalendar/fullcalendar/fullcalendar.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('conquer2/plugins/jqvmap/jqvmap/jqvmap.css') }}" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGIN STYLES -->
     <!-- BEGIN THEME STYLES -->
-    <link href="conquer2/css/style-conquer.css" rel="stylesheet" type="text/css" />
-    <link href="conquer2/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="conquer2/css/style-responsive.css" rel="stylesheet" type="text/css" />
-    <link href="conquer2/css/plugins.css" rel="stylesheet" type="text/css" />
-    <link href="conquer2/css/pages/tasks.css" rel="stylesheet" type="text/css" />
-    <link href="conquer2/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color" />
-    <link href="conquer2/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('conquer2/css/style-conquer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('conquer2/css/style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('conquer2/css/style-responsive.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('conquer2/css/plugins.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('conquer2/css/pages/tasks.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('conquer2/css/themes/default.css') }}" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="{{ asset('conquer2/css/custom.css') }}" rel="stylesheet" type="text/css" />
     <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="favicon.ico" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -66,7 +66,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="index.html">
-                    <img src="conquer2/img/logo.png" alt="logo" />
+                    <img src="{{ asset('conquer2/img/logo.png') }}" alt="logo" />
                 </a>
             </div>
             <form class="search-form search-form-header" role="form" action="index.html">
@@ -78,7 +78,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- END LOGO -->
             <!-- BEGIN RESPONSIVE MENU TOGGLER -->
             <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <img src="conquer2/img/menu-toggler.png" alt="" />
+                <img src="{{ asset('conquer2/img/menu-toggler.png') }}" alt="" />
             </a>
             <!-- END RESPONSIVE MENU TOGGLER -->
             <!-- BEGIN TOP NAVIGATION MENU -->
@@ -439,7 +439,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <li class="dropdown user">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                         data-close-others="true">
-                        <img alt="" src="conquer2/img/avatar3_small.jpg" />
+                        <img alt="" src="{{ asset('conquer2/img/avatar3_small.jpg') }}" />
                         <span class="username username-hide-on-mobile">Nick </span>
                         <i class="fa fa-angle-down"></i>
                     </a>
@@ -615,41 +615,41 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- END FOOTER -->
     <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
     <!-- BEGIN CORE PLUGINS -->
-    <script src="conquer2/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jquery-1.11.0.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jquery-migrate-1.2.1.min.js') }}" type="text/javascript"></script>
     <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-    <script src="conquer2/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jquery.blockui.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="conquer2/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jquery.peity.min.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jquery-knob/js/jquery.knob.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/flot/jquery.flot.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/flot/jquery.flot.resize.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jqvmap/jqvmap/jquery.vmap.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jquery.peity.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jquery.pulsate.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jquery-knob/js/jquery.knob.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/flot/jquery.flot.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/flot/jquery.flot.resize.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/bootstrap-daterangepicker/moment.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/bootstrap-daterangepicker/daterangepicker.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/gritter/js/jquery.gritter.js') }}" type="text/javascript"></script>
     <!-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
-    <script src="conquer2/plugins/fullcalendar/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
-    <script src="conquer2/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/fullcalendar/fullcalendar/fullcalendar.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jquery-easypiechart/jquery.easypiechart.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/plugins/jquery.sparkline.min.js') }}" type="text/javascript"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="conquer2/scripts/app.js" type="text/javascript"></script>
-    <script src="conquer2/scripts/index.js" type="text/javascript"></script>
-    <script src="conquer2/scripts/tasks.js" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/scripts/app.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/scripts/index.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('conquer2/scripts/tasks.js') }}" type="text/javascript"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
     <script>
         jQuery(document).ready(function() {
