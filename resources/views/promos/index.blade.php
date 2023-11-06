@@ -1,8 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-<title>Promo</title>
-    
+    <title>Promo</title>
 @endsection
 
 @section('head')
@@ -44,8 +43,7 @@
 @endsection
 
 @section('content')
-
-    <body>
+    <div class="container">
         <section class="vh-100 gradient-custom-2">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -59,8 +57,6 @@
                                         alt="Check" width="60">
                                     <h2 class="my-4">Promos</h2>
                                 </div>
-
-
 
                             </div>
                         </div>
@@ -85,7 +81,7 @@
             </div>
 
         </section>
-        <!-- MDB -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
-    </body>
+    </div>
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
 @endsection

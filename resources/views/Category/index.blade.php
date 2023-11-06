@@ -1,21 +1,19 @@
 @extends('layouts.template')
 
 @section('content')
-    <div class="container">
+    <div class="container d-flex flex-row">
         <table>
             <thead>
-                <tr>
-                    <th>
-                        parent_categories
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
                 @foreach ($parent_categories as $pc)
                     <tr>
-                        <td class="parent">{{ $pc->nama }}</td>
+                        <th class="parent">{{ $pc->nama }}</th>
                     </tr>
                 @endforeach
+            </thead>
+        </table>
+        <table>
+            <tbody id="sub_categories">
+
             </tbody>
         </table>
     </div>
@@ -32,10 +30,12 @@
                     url: "{{ route('displayCategories') }}",
                     data: {
                         '_token': '<?php echo csrf_token(); ?>',
+                        'parentKategori': $(this).text(),
                     },
                     success: function(data) {
-                        // alert(data);
-                        alert('success')
+                        // alert('success')
+                        console.log(data)
+
                     },
                     error: function() {
                         alert('error')

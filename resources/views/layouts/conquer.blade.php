@@ -50,6 +50,9 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="shortcut icon" href="favicon.ico" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    {{-- JQuery CDN --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     @yield('css')
 </head>
 <!-- END HEAD -->
@@ -498,7 +501,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </div>
                         </form>
                     </li>
-                    <li class="start active ">
+                    <li class="start active">
                         <a href="{{route('home.admin')}}">
                             <i class="icon-home"></i>
                             <span class="title">Dashboard</span>
@@ -566,8 +569,15 @@ License: You must have a valid license purchased only from themeforest(the above
                     </li> --}}
                     <li>
                         <a href="{{route('transactions.index')}}">
-                            <i class="fa-solid fa-receipt"></i>
+                            <i class="fa fa-book"></i>
                             <span class="title">Transaction</span>
+                        </a>
+                        
+                    </li>
+                    <li>
+                        <a href="{{route('createNewProduct')}}">
+                            <i class="fa fa-archive"></i>
+                            <span class="title">Create New Product</span>
                         </a>
                         
                     </li>

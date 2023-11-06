@@ -28,9 +28,13 @@ Route::get('/', function () {
 });
 
 Route::resource('home', 'ProductController');
+Route::get('/createNewProduct', 'ProductController@createProductPage')->name('createNewProduct');
+
 Route::resource('brand', 'BrandController');
+
+
 Route::resource('category', 'CategoryController');
-Route::get('/category/display/sub_category', 'CategoryController@displayCategories')->name('displayCategories');
+Route::post('/category/display', 'CategoryController@displayCategories')->name('displayCategories');
 
 Route::resource('review', 'ReviewController');
 
@@ -40,7 +44,7 @@ Route::get('/conquer', function () {
 
 Route::resource('shop', 'ShopController');
 Route::resource('productstock', 'ProductStockController');
-Route::resource('promos', 'PromosController');
+Route::resource('promos', 'PromoController');
 
 // ======================================================== Admin ====================================================================
 

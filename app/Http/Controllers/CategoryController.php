@@ -137,14 +137,22 @@ class CategoryController extends Controller
 
     public function displayCategories(Request $request)
     {
-        $namaKategori = $request['namaKategori'];
+        $namaKategori = $request->get('parentKategori');
 
         $sub_categories = DB::table('categories as c')
             ->join('categories as c1', 'c.parent_category_id', 'c1.idcategories')
             ->where('c1.nama', $namaKategori)
             ->get();
 
+        $child_categories = DB::table('categories as c')
+            ->join('categories as c1', 'c.parent_category_id', 'c1.idcategories')
+            ->join('categories as c2', 'c1.parent_category_id', 'c2.idcategories')
+            ->where('c2.nama', 'Appliances')
+            ->get();
 
-        return response()->json(['sub_categories' => $sub_categories]);
+        return response()->json([
+            'sub_categories' => $sub_categories,
+            'child_categories' => $child_categories,
+        ]);
     }
 }

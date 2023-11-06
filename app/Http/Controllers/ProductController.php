@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -39,7 +40,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product_name = $request->get('product_name');
+        $product_desc = $request->get('product_description');
+        $category_id = $request->get('category_id');
+        $brand_id = $request->get('brand_id');
+        $product_price = $request->get('product_price');
+
+        DB::table('products')->insert([
+            'nama' => $product_name,
+            'deskripsi' => $product_desc,
+            'category_id' => $category_id,
+            'brand_id' => $brand_id,
+            'harga' => $product_price,
+        ]);
+
+        return response()->json(['msg' => 'Data has been added Successfully!!']);
     }
 
     /**
@@ -88,5 +103,17 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function createProductPage()
+    {
+        $categories = DB::table('categories as c')
+            ->whereNotNull('parent_category_id')
+            ->get();
+
+        $brands = DB::table('brands as b')
+            ->get();
+
+        return view("Product.create", compact('categories', 'brands'));
     }
 }
