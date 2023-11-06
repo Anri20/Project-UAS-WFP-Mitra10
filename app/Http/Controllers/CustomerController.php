@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class CustomerController extends Controller
 {
@@ -17,25 +19,44 @@ class CustomerController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('customer.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:customers',
+            'whatsapp_number' => 'required|starts_with:+|unique:customers,nomor_whatsapp',
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required',
+            'date_of_birth' => 'required|date',
+            'sex' => ['required', Rule::in(['L', 'P'])],
+            'address' => 'required',
+        ]);
+
+        $customer = new Customer;
+        $customer->nama_depan = $validated['first_name'];
+        $customer->nama_belakang = $validated['last_name'];
+        $customer->email = $validated['email'];
+        $customer->nomor_whatsapp = $validated['whatsapp_number'];
+        $customer->password = Hash::make($validated['password']);
+        $customer->tanggal_lahir = $validated['date_of_birth'];
+        $customer->jenis_kelamin = $validated['sex'];
+        $customer->alamat = $validated['address'];
+
+        $success = $customer->save();
+
+        return redirect()->route('customers.create')
+            ->with('status', [
+                'success' => $success,
+                'message' => $success ?
+                    "Customer data added successfully" :
+                    'Unable to save customer data',
+            ]);
     }
 
     /**

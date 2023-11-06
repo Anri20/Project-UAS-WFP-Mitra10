@@ -53,6 +53,9 @@ Route::get('/admin', function(){
     return view ('Admin.Home.index');
 })->name('home.admin');
 
+// Customer
+Route::resource('customers', 'CustomerController');
+
 // Transaction
 Route::get('transactions/popover/{transaction}/items', 'TransactionController@items_popover')
     ->name('transaction.items.popover');
