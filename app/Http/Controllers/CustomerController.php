@@ -78,19 +78,45 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('customer.edit', compact('customer'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Customer $customer)
     {
-        //
+        $validated = $request->validate([
+            'email' => 'nullable|email|unique:customers',
+            'whatsapp_number' => 'nullable|starts_with:+|unique:customers,nomor_whatsapp',
+            'password' => 'confirmed',
+            'date_of_birth' => 'date',
+            'sex' => [Rule::in(['L', 'P'])],
+        ]);
+
+        if ($value = $request->first_name)
+            $customer->nama_depan = $value;
+        if ($value = $request->last_name)
+            $customer->nama_belakang = $value;
+        if ($value = $validated['email'])
+            $customer->email = $value;
+        if ($value = $validated['whatsapp_number'])
+            $customer->nomor_whatsapp = $value;
+        if ($value = $validated['password'])
+            $customer->password = Hash::make($value);
+        if ($value = $validated['date_of_birth'])
+            $customer->tanggal_lahir = $value;
+        if ($value = $validated['sex'])
+            $customer->jenis_kelamin = $value;
+        if ($value = $request->address)
+            $customer->alamat = $value;
+
+        $success = $customer->save();
+
+        return redirect()->route('customers.edit', $customer->idcustomers)
+            ->with('status', [
+                'success' => $success,
+                'message' => $success ?
+                    "Customer data saved successfully" :
+                    'Unable to save customer data',
+            ]);
     }
 
     /**
