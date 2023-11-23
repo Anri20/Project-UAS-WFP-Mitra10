@@ -24,4 +24,8 @@ class Transaction extends Model
     public function review(){
         return $this->hasMany(Review::class, 'transaction_id', 'idtransactions');
     }
+
+    public function transaction(){
+        return $this->hasMany('app/transaction','shop_id','id');
+    }
 }

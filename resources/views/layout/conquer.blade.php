@@ -2680,7 +2680,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 						<div class="portlet-body" id="chats">
-							<div class="scroller" style="height: 435px;" data-always-visible="1" data-rail-visible1="1">
+							{{-- <div class="scroller" style="height: 435px;" data-always-visible="1" data-rail-visible1="1">
 								<ul class="chats">
 									<li class="in">
 										<img class="avatar img-responsive" alt="" src="conquer2/img/avatar1.jpg"/>
@@ -2779,7 +2779,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 									</li>
 								</ul>
-							</div>
+							</div> --}}
 							<div class="chat-form">
 								<div class="input-cont">
 									<input class="form-control" type="text" placeholder="Type a message here..."/>

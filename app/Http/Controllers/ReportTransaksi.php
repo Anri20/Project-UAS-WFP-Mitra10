@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ShopController extends Controller
+class ReportTransaksi extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,19 +14,12 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $toko = DB::table('shops')
-                ->join('shop_areas','shops.shop_area_id','shop_areas.idshopareas')
-                ->get(
-                    array(
-                        'shops.idshops as idshops',
-                        'shops.nama as nama_toko',
-                        'shop_areas.nama as nama_area',
-                        'shops.nomor_whatsapp',
-                        'shop_areas.idshopareas as idshopareas'
-
-                    )
-                );
-        return view('shop.index', compact('toko'));
+        $data = DB::table('transactions')
+        ->join('customers','customers.idcustomers', '=','transactions.customer_id')
+        ->select('customers.idcustomers', 'customers.nama_depan')
+        ->groupBy('customers.idcustomers','customers.nama_depan')
+        ->get();
+        return view('report.index',compact('data'));
     }
 
     /**
@@ -36,10 +29,7 @@ class ShopController extends Controller
      */
     public function create()
     {
-        $shoparea = DB::table('shop_areas')
-        ->get();
-
-        return view('shop.create',compact('shoparea'));
+        //
     }
 
     /**
@@ -50,16 +40,7 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-
-
-                DB::table('shops')->insert(
-                    [
-                        'nama' => $request->namashop,
-                        'nomor_whatsapp' => $request->nowhatapp,
-                        'shop_area_id' => $request->shoparea
-                    ]
-                );
-            return redirect('/shop')->with('status', 'trueinsert');
+        //
     }
 
     /**
@@ -81,9 +62,7 @@ class ShopController extends Controller
      */
     public function edit($id)
     {
-        $shops = DB::table('shops')->find($id);
-
-        return view('shop.update',compact('toko'));
+        //
     }
 
     /**

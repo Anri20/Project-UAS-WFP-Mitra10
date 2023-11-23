@@ -1,0 +1,305 @@
+php artisan make:migration create_user_table
+php artisan migrate
+php artisan migrate:rollback
+php artisan make:seeder UserSeeder
+php artisan db:seed
+php aridan make:model user
+php artisan serve
+
+TAMPILAN
+ <div class="page-content-wrapper">
+    <div class="page-content">
+        @yield('content')      tempat content pada layout admin
+    </div>
+ </div>
+
+ @extends('Week6.layouts.conquer') cara panggil layout admin
+
+@section('content')
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-12 col-xl-10">
+
+        <div class="card mask-custom">
+          <div class="card-body p-4 text-white">
+
+            <div class="text-center pt-3 pb-2">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp"
+                alt="Check" width="60">
+              <h2 class="my-4">Promos</h2>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="d-flex align-items-start bg-light mb-3" style="height: 100px;">
+
+        <table class="table text-white mb-0">
+            <thead>
+              <tr>
+                <th scope="col">Gambar</th>
+                <th scope="col">Nama promo</th>
+                <th scope="col">diskon</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                @foreach ($promos as $show)
+                <tr>
+
+                    <td><img width="100" src="{{asset('image/'.$show->gambar)}}" class="card-img-top" alt="Fissure in Sandstone"/></td>
+                    <td>{{$show->nama}}</td>
+                    <td>{{$show->diskon}}%</td>
+                    <td><a href="#{{$show->idpromos}}" class="btn btn-primary" data-toggle='modal'>Detail</a></td>
+
+                </tr>
+               @endforeach
+            </tbody>
+        </table>
+
+    </div>
+    @foreach ($promos as $show)
+        <div class="modal fade" id="{{$show->idpromos}}"  tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Promo detail</h4>
+                </div>
+                <div class="modal-body">
+                    <img width="100" src="{{asset('image/'.$show->gambar)}}" class="card-img-top" alt="Fissure in Sandstone"/>
+                    {{$show->deskripsi}}
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    @endforeach
+
+  </div>
+
+  @endsection
+
+  contoh 2
+  @extends('Week6.layouts.conquer')
+
+@section('content')
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-12 col-xl-10">
+
+        <div class="card mask-custom">
+          <div class="card-body p-4 text-white">
+
+            <div class="text-center pt-3 pb-2">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp"
+                alt="Check" width="60">
+              <h2 class="my-4">Toko</h2>
+            </div>
+
+            <table class="table text-white mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">Nama Toko</th>
+                  <th scope="col">Area Toko</th>
+                  <th scope="col">Nomor Whatsapp</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                  @foreach ($toko as $show)
+                      <tr class="fw-normal">
+                          <td class="align-middle">
+                              <span>{{$show->nama_toko}}</span>
+                          </td>
+                          <td class="align-middle">
+                               <h6 class="mb-0">{{$show->nama_area}}</h6>
+                          </td>
+                          <td class="align-middle">
+                              <h6 class="mb-0">{{$show->nomor_whatsapp}}</h6>
+                              </td>
+                          <td class="align-middle">
+                              <button type="button" class="btn btn-primary">Beli di sini</button>
+                          </td>
+                      </tr>
+                  @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+menamampilkan jumlah (contoh kasus)
+<table class="table text-white mb-0">
+                        <thead>
+                          <tr>
+                            <th scope="col">id pelanggan</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Jumlaj</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $show)
+                                <tr class="fw-normal">
+                                    <td class="align-middle">
+                                        <span>{{$show->idcustomers}}</span>
+                                    </td>
+                                    <td class="align-middle">
+                                         <h6 class="mb-0">{{$show->nama_depan}}</h6>
+                                    </td>
+                                    <td class="align-middle">
+                                        <h6 class="mb-0">{{number_format($show->total,3)}}</h6>
+                                        </td>
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+                      </table>
+
+fungsi di controller
+DB::table('properti')->insert(
+                    [
+                        'kondisi' => $request->kondisi,
+                        'lantai' => $request->lantai,
+                        'name' => $request->name,
+                        'alamat' => $request->alamat,
+                        'kelurahan' => $request->kelurahan,
+                        'kecamatan' => $request->kecamatan,
+                        'harga' => $request->harga,
+                        'luas_tanah' => $request->luas_tanah,
+                        'luas_bangunan' => $request->luas_bangunan,
+                        'kamar_tidur' => $request->kamar_tidur,
+                        'kamar_tidur_pembantu' => $request->kamar_tidur_pembantu,
+                        'orienrasi' => $request->orienrasi,
+                        'listrik' => $request->listrik,
+                        'air' => $request->air,
+
+                        'created_at' => date("Y-m-d H:i:s"),
+                        'updated_at' => date("Y-m-d H:i:s"),
+                    ]
+                );
+
+                DB::table('properti')->where('id',$id)->update(
+                    [
+                        'status_approved' => 1,
+                        'created_by' => auth()->user()->name,
+                        'updated_by' => auth()->user()->name,
+                        'created_at' => date("Y-m-d H:i:s"),
+                        'updated_at' => date("Y-m-d H:i:s"),
+                    ]
+                );
+
+                DB::table('properti')->where('id',$id)->delete();
+
+ambil data jika ada perhitungan (pakai select)
+(controler cari jumlah sum)
+$data = DB::table('transactions')
+        ->join('customers','customers.idcustomers', '=','transactions.customer_id')
+        ->select('customers.idcustomers', 'customers.nama_depan', DB::raw('sum(transactions.total) as total') )
+        ->groupBy('customers.idcustomers','customers.nama_depan')
+        ->get();
+        return view('report.index',compact('data'));
+
+jika tidak ada perhitunagan
+        $toko = DB::table('products')
+        ->join('product_stocks','products.idproducts','product_stocks.product_id')
+        ->join('shops','shops.idshops','product_stocks.shop_id')
+        ->join('brands','brands.idbrands','products.brand_id')
+        ->join('categories','categories.idcategories','products.category_id')
+        ->get(
+            array(
+                'products.*',
+                'product_stocks.stok',
+                'shops.nama as nama_toko',
+                'brands.nama as nama_brand',
+                'categories.nama as nama_kategori',
+
+            )
+        );
+        return view('productstock.index', compact('toko'));
+
+nampilkan semua data
+public function index()
+    {
+        $promos = DB::table('promos')->get();
+     return view('promos.index',compact('promos'));
+    }
+
+
+route           [nama link] ,  [controller]
+Route::resource('shoparea', 'ShopAreaController');
+Route::resource('productstock', 'ProductStockController');
+Route::resource('promos', 'PromosController');
+
+seeder
+(input data random 1)
+public function run()
+    {
+        for ($i = 0; $i < 10; $i++) {
+            $customer = Customer::factory()
+                ->create();
+
+            User::factory()
+                ->customer()
+                ->state([
+                    'name' => "$customer->nama_depan $customer->nama_belakang",
+                    'email' => $customer->email,
+                    'phone' => $customer->nomor_whatsapp,
+                    'customer_id' => $customer->idcustomers,
+                ])
+                ->create();
+        }
+    }
+
+(input manual)
+public function run()
+    {
+        DB::table('Promos')->insert(
+            [
+                'gambar' => 'christmassale.jpeg',
+                'nama' => 'Christmass Saleee',
+                'deskripsi' => 'Diskon Chirsmass',
+                'kode' => rand(000,999),
+                'diskon' => rand(0,99)/10
+            ]
+        );
+    }
+
+migrate
+(table berhubungan)
+public function up()
+    {
+        Schema::create('product_stocks', function (Blueprint $table) {
+            $table->foreignId('shop_id')->constrained('shops', 'idshops');
+            $table->foreignId('product_id')->constrained('products', 'idproducts');
+            $table->unsignedInteger('stok');
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('product_stocks');
+    }
+
+    public function up()
+    {
+        Schema::create('promos', function (Blueprint $table) {
+            $table->unsignedBigInteger('idpromos')->autoIncrement();
+            $table->string('gambar')->nullable();
+            $table->string('nama');
+            $table->text('deskripsi')->nullable();
+            $table->string('kode');
+            $table->unsignedDouble('diskon', 3, 2);
+            $table->timestamps();
+            $table->enum('jenis_kelamin', ['L', 'P']);
+        });
+    }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
     /**
@@ -17,7 +17,7 @@ class CategoryController extends Controller
         $categories = Category::all();
         // dd($categories);
 
-        return view('Category.index', compact('categories'));
+        return view('Week6.Category.index', compact('categories'));
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('Week6.Category.create');
     }
 
     /**
@@ -38,7 +38,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = DB::table('categories')->insert(
+            [
+                'nama' => $request->nama
+            ]
+            );
+            return redirect('/category')->with('status', 'trueinsert');
     }
 
     /**
@@ -89,6 +94,7 @@ class CategoryController extends Controller
     public function week4()
     {
         $categories = Category::all();
+
 
         return view('Week4.Category.index', compact('categories'));
     }
@@ -144,4 +150,16 @@ class CategoryController extends Controller
 
         return view('Week6.Category.stock', compact('categories'));
     }
+
+    public function showProducts()
+    {
+        $cat=Category::find($_POST['category_id']);
+        $nama=$cat->nama_kategori;
+        $data=$cat->products;
+        return response()->json(array(
+            'status'=>'oke',
+            'msg'=>view('category.showProducts',compact('nama','data'))->render()
+        ),200);
+    }
+
 }
