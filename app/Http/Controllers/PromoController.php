@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Promo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use auth;
 
-use Illuminate\Support\Facades\DB;
-class PromosController extends Controller
+class PromoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,9 @@ class PromosController extends Controller
      */
     public function index()
     {
-        $promos = DB::table('promos')->get();
-     return view('promos.index',compact('promos'));
+        $promos = Promo::all();
+
+        return view('promos.index', compact('promos'));
     }
 
     /**

@@ -16,8 +16,6 @@ class ReviewController extends Controller
     {
         $reviews = Review::all();
         // dd($reviews);
-        
-        return view('Week4.Review.index', compact('reviews'));
     }
 
     /**

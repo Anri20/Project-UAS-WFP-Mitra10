@@ -14,8 +14,13 @@ class CreateCartsTable extends Migration
     public function up()
     {
         Schema::create('carts', function (Blueprint $table) {
-            $table->foreignId('customer_id')->constrained('customers', 'idcustomers');
-            $table->foreignId('product_id')->constrained('products', 'idproducts');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('product_id');
+            $table->primary(['customer_id', 'product_id']);
+
+            $table->foreign('customer_id')->references('idcustomers')->on('customers')->onDelete('cascade');
+            $table->foreign('product_id')->references('idproducts')->on('products')->onDelete('cascade');
+
             $table->unsignedInteger('jumlah');
             $table->timestamps();
         });

@@ -57,8 +57,6 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="shortcut icon" href="favicon.ico" />
 
     @yield('cdn')
-
-
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -531,28 +529,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                     Products</a>
                             </li>
                             <li>
-                                {{-- <a href="{{ route('category.week6') }}">
+                                <a href="{{ route('category.week6') }}">
                                     <i class="icon-book-open"></i>
-                                    Categories</a> --}}
-
-                                    <a href="{{URL::to('/')}}/category">
-                                        <i class="icon-book-open"></i>
-                                        Category</a>
-                            </li>
-                            <li>
-                                <a href="{{URL::to('/')}}/shop">
-                                    <i class="icon-book-open"></i>
-                                    shop</a>
-                            </li>
-                            <li>
-                                <a href="{{URL::to('/')}}/productstock">
-                                    <i class="icon-book-open"></i>
-                                    stok</a>
-                            </li>
-                            <li>
-                                <a href="{{URL::to('/')}}/promos">
-                                    <i class="icon-book-open"></i>
-                                    promo</a>
+                                    Categories</a>
                             </li>
                             <li>
                                 <a href="{{ route('brand.week6') }}">
@@ -574,13 +553,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                     Products</a>
                             </li>
                             <li>
-                                {{-- <a href="{{ route('category.stock.week6') }}">
+                                <a href="{{ route('category.stock.week6') }}">
                                     <i class="icon-book-open"></i>
-                                    Categories</a> --}}
-
-                                    <a href="{{URL::to('/')}}/category">
-                                        <i class="icon-book-open"></i>
-                                        Category</a>
+                                    Categories</a>
                             </li>
                             <li>
                                 <a href="{{ route('brand.stock.week6') }}">
@@ -682,7 +657,6 @@ License: You must have a valid license purchased only from themeforest(the above
         });
     </script>
     <!-- END JAVASCRIPTS -->
-    @yield('javascrip')
 </body>
 <!-- END BODY -->
 

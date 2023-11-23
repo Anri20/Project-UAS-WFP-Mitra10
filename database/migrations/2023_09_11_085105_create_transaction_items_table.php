@@ -14,8 +14,13 @@ class CreateTransactionItemsTable extends Migration
     public function up()
     {
         Schema::create('transaction_items', function (Blueprint $table) {
-            $table->foreignId('transaction_id')->constrained('transactions', 'idtransactions');
-            $table->foreignId('product_id')->constrained('products', 'idproducts');
+            $table->unsignedBigInteger('transaction_id');
+            $table->unsignedBigInteger('product_id');
+            $table->primary(['transaction_id', 'product_id']);
+
+            $table->foreign('transaction_id')->references('idtransactions')->on('transactions')->onDelete('cascade');
+            $table->foreign('product_id')->references('idproducts')->on('products')->onDelete('cascade');
+
             $table->unsignedInteger('jumlah');
             $table->unsignedDouble('total', 12, 2);
             $table->timestamps();

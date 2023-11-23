@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
+use App\Models\Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class BrandController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,15 +14,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = [];
-        foreach (range('A', 'Z') as $char) {
-            $alphaBrand = Brand::where('nama', 'like', $char . '%')->orderBy('nama', 'asc')->get();
-            $brands[$char] = $alphaBrand;
-        }
-        // dd($brands);
-        // var_dump($brands);
-
-        return view('ShopByBrand.index', compact('brands'));
+        //
     }
 
     /**
@@ -50,10 +41,10 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function show(Brand $brand)
+    public function show(Cart $cart)
     {
         //
     }
@@ -61,10 +52,10 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit(Cart $cart)
     {
         //
     }
@@ -73,10 +64,10 @@ class BrandController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, Cart $cart)
     {
         //
     }
@@ -84,10 +75,10 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy(Cart $cart)
     {
         //
     }
