@@ -57,6 +57,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="shortcut icon" href="favicon.ico" />
 
     @yield('cdn')
+    @yield('css')
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -510,59 +511,123 @@ License: You must have a valid license purchased only from themeforest(the above
                         </form>
                     </li>
                     <li class="start active ">
-                        <a href="{{ route('dashboard.week6') }}">
+                        <a href="{{ route('home.admin') }}">
                             <i class="icon-home"></i>
                             <span class="title">Dashboard</span>
-                            <span class="selected"></span>
                         </a>
                     </li>
-                    <li>
+                    <li class="">
                         <a href="javascript:;">
                             <i class="icon-puzzle"></i>
-                            <span class="title">Master</span>
-                            <span class="arrow "></span>
+                            <span class="title">Create</span>
+                            <span class="arrow"></span>
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="{{ route('dashboard.week6') }}">
+                                <a href="{{ route('createNewProduct') }}">
                                     <i class="icon-anchor"></i>
-                                    Products</a>
+                                    Product</a>
                             </li>
                             <li>
-                                <a href="{{ route('category.week6') }}">
-                                    <i class="icon-book-open"></i>
-                                    Categories</a>
+                                <a href="{{ route('createNewCategory') }}">
+                                    <i class="icon-anchor"></i>
+                                    Category</a>
                             </li>
                             <li>
-                                <a href="{{ route('brand.week6') }}">
-                                    <i class="icon-pin"></i>
-                                    Supplier</a>
+                                <a href="{{ route('createNewBrand') }}">
+                                    <i class="icon-anchor"></i>
+                                    Brand</a>
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="">
                         <a href="javascript:;">
-                            <i class="icon-social-dropbox"></i>
-                            <span class="title">Stock</span>
-                            <span class="arrow "></span>
+                            <i class="icon-puzzle"></i>
+                            <span class="title">Edit</span>
+                            <span class="arrow"></span>
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="{{ route('dashboard.stock.week6') }}">
+                                <a href="">
                                     <i class="icon-anchor"></i>
-                                    Products</a>
+                                    Product</a>
                             </li>
                             <li>
-                                <a href="{{ route('category.stock.week6') }}">
-                                    <i class="icon-book-open"></i>
-                                    Categories</a>
+                                <a href="">
+                                    <i class="icon-anchor"></i>
+                                    Category</a>
                             </li>
                             <li>
-                                <a href="{{ route('brand.stock.week6') }}">
-                                    <i class="icon-pin"></i>
-                                    Supplier</a>
+                                <a href="{{ route('adminIndexBrand') }}">
+                                    <i class="icon-anchor"></i>
+                                    Brand</a>
                             </li>
                         </ul>
+                    </li>
+                    {{-- <li>
+                        <a href="javascript:;">
+                            <i class="icon-puzzle"></i>
+                            <span class="title">Page Layouts</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="layout_sidebar_fixed.html">
+                                    <i class="icon-anchor"></i>
+                                    Sidebar Fixed Page</a>
+                            </li>
+                            <li>
+                                <a href="layout_sidebar_closed.html">
+                                    <i class="icon-book-open"></i>
+                                    Sidebar Closed Page</a>
+                            </li>
+                            <li>
+                                <a href="layout_boxed_page.html">
+                                    <i class="icon-pin"></i>
+                                    Boxed Page</a>
+                            </li>
+                            <li>
+                                <a href="layout_session_timeout.html">
+                                    <i class="icon-vector"></i>
+                                    <span class="badge badge-warning">new</span>Session Timeout</a>
+                            </li>
+                            <li>
+                                <a href="layout_idle_timeout.html">
+                                    <i class="icon-cursor"></i>
+                                    User Idle Timeout</a>
+                            </li>
+                            <li>
+                                <a href="layout_language_bar.html">
+                                    <i class="icon-rocket"></i>
+                                    Language Bar</a>
+                            </li>
+                            <li>
+                                <a href="layout_disabled_menu.html">
+                                    <i class="icon-link"></i>
+                                    Disabled Menu Links</a>
+                            </li>
+                            <li>
+                                <a href="layout_sidebar_reversed.html">
+                                    <i class="icon-settings"></i>
+                                    <span class="badge badge-success">new</span>Reversed Sidebar</a>
+                            </li>
+                            <li>
+                                <a href="layout_blank_page.html">
+                                    <i class="icon-paper-clip"></i>
+                                    Blank Page</a>
+                            </li>
+                            <li>
+                                <a href="layout_ajax.html">
+                                    <i class="icon-bubble"></i>
+                                    Content Loading via Ajax</a>
+                            </li>
+                        </ul>
+                    </li> --}}
+                    <li class="last ">
+                        <a href="login.html">
+                            <i class="icon-user"></i>
+                            <span class="title">Login</span>
+                        </a>
                     </li>
                 </ul>
                 <!-- END SIDEBAR MENU -->

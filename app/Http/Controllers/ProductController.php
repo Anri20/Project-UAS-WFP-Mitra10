@@ -114,6 +114,6 @@ class ProductController extends Controller
         $brands = DB::table('brands as b')
             ->get();
 
-        return view("Product.create", compact('categories', 'brands'));
+        return view("Admin.Product.create", compact('categories', 'brands'));
     }
 }

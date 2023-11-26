@@ -68,8 +68,8 @@ class CategoryController extends Controller
             [
                 'nama' => $request->nama
             ]
-            );
-            return redirect('/category')->with('status', 'trueinsert');
+        );
+        return redirect('/category')->with('status', 'trueinsert');
     }
 
     /**
@@ -169,13 +169,17 @@ class CategoryController extends Controller
 
     public function showProducts()
     {
-        $cat=Category::find($_POST['category_id']);
-        $nama=$cat->nama_kategori;
-        $data=$cat->products;
+        $cat = Category::find($_POST['category_id']);
+        $nama = $cat->nama_kategori;
+        $data = $cat->products;
         return response()->json(array(
-            'status'=>'oke',
-            'msg'=>view('category.showProducts',compact('nama','data'))->render()
-        ),200);
+            'status' => 'oke',
+            'msg' => view('category.showProducts', compact('nama', 'data'))->render()
+        ), 200);
     }
 
+    public function createCategoryPage()
+    {
+        return view('Admin.Category.create');
+    }
 }

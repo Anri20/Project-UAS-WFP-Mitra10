@@ -44,7 +44,13 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $brand_name = $request->get('brand_name');
+
+        DB::table('brands')->insert([
+            'nama' => $brand_name,
+        ]);
+
+        return response()->json(['msg' => 'Data has been added Successfully!!']);
     }
 
     /**
@@ -90,5 +96,38 @@ class BrandController extends Controller
     public function destroy(Brand $brand)
     {
         //
+    }
+
+    public function indexAdmin()
+    {
+        $brands = Brand::orderBy('nama')->get();
+        // dd($brands);
+        // var_dump($brands);
+
+        return view('Admin.Brand.index', compact('brands'));
+    }
+
+    public function createBrandPage()
+    {
+        return view("Admin.Brand.create");
+    }
+
+    public function updateBrand(Request $request)
+    {
+        $brandName = $request->get('brandName');
+        $newBrandName = $request->get('newBrandName');
+
+        DB::table('brands')->where('nama', $brandName)->update(['nama' => $newBrandName]);
+
+        return response()->json(["msg" => "Data has been updated successfully!!!"], 200);
+    }
+
+    public function deleteBrand(Request $request)
+    {
+        $brandName = $request->get('brandName');
+
+        Brand::where('nama', $brandName)->delete();
+
+        return response()->json(["msg" => "Data has been deleted successfully!!!"], 200);
     }
 }
