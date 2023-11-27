@@ -9,14 +9,10 @@ use Illuminate\Validation\Rule;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $customers = Customer::all();
+        return view('customer.index', compact('customers'));
     }
 
     public function create()
@@ -70,12 +66,6 @@ class CustomerController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Customer $customer)
     {
         return view('customer.edit', compact('customer'));
@@ -119,14 +109,13 @@ class CustomerController extends Controller
             ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+    }
+
+    public function modal_edit(Customer $customer)
+    {
+        return view('customer.modal.edit', compact('customer'));
     }
 }

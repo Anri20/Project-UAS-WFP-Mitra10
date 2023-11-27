@@ -58,6 +58,12 @@ Route::get('/createNewBrand', 'BrandController@createBrandPage')->name('createNe
 Route::post('/brand/admin/update', 'BrandController@updateBrand')->name('updateBrand');
 Route::post('/brand/admin/delete', 'BrandController@deleteBrand')->name('deleteBrand');
 
+// Customer
+Route::get('customers/modal/{customer}/edit', 'CustomerController@modal_edit')
+    ->name('customer.modal.edit');
+
+Route::resource('customers', 'CustomerController');
+
 // Transaction
 Route::get('transactions/popover/{transaction}/items', 'TransactionController@items_popover')->name('transaction.items.popover');
 Route::post('transactions/alert', 'TransactionController@alert')->name('transaction.alert');
