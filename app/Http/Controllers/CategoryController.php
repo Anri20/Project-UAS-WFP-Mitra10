@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -64,12 +65,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = DB::table('categories')->insert(
-            [
-                'nama' => $request->nama
-            ]
-        );
-        return redirect('/category')->with('status', 'trueinsert');
+        $parent_category_id = $request->get('parent_category_id');
+        $category_name = $request->get('category_name');
+
+        DB::table('categories')->insert([
+            'nama' => $category_name,
+            'parent_category_id' => $parent_category_id,
+        ]);
+
+        return response()->json(['msg' => "Data has been added successfully!!!"], 200);
     }
 
     /**
@@ -180,6 +184,29 @@ class CategoryController extends Controller
 
     public function createCategoryPage()
     {
-        return view('Admin.Category.create');
+        $main_categories = DB::table('categories')
+            ->where('parent_category_id', null)
+            ->get();
+
+        $subquery1 = DB::table('categories as c')
+            ->join('categories as c1', 'c.parent_category_id', 'c1.idcategories')
+            ->join('categories as c2', 'c1.parent_category_id', 'c2.idcategories')
+            ->distinct()
+            ->select('c.nama');
+
+        $subquery2 = DB::table('categories')
+            ->where('parent_category_id', null)
+            ->select('nama');
+
+        $sub_categories = DB::table('categories')
+            ->whereNotIn('nama', $subquery1)
+            ->whereNotIn('nama', $subquery2)
+            ->get();
+
+        $main_sub_categories = DB::table('categories')
+            ->whereNotIn('nama', $subquery1)
+            ->get();
+
+        return view('Admin.Category.create', compact('main_categories', 'sub_categories', 'main_sub_categories'));
     }
 }

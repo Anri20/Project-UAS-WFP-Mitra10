@@ -9,6 +9,11 @@
         input {
             width: 100%;
         }
+
+        option:disabled {
+            font-weight: bold;
+            text-align: left;
+        }
     </style>
 @endsection
 
@@ -17,54 +22,42 @@
     <form>
         @csrf
         <div class="form-group">
-            <label for="productName">Nama Produk</label>
-            <input type="text" id="productName" placeholder="Enter the new product name">
-        </div>
-        <div class="form-group">
-            <label for="productDesc">Deskripsi Produk</label>
-            <input type="text" id="productDesc" placeholder="Enter the new product description">
-        </div>
-        <div class="form-group">
-            <label for="productCategory">Kategori Produk</label><br>
-            <select name="productCategory" id="productCategory">
+            <label for="parentCategory">Parent Kategori</label><br>
+            <select name="parentCategory" id="parentCategory">
                 <option value="-" selected disabled hidden>Choose Category</option>
-                @foreach ($categories as $category)
-                    <option value="{{ $category->idcategories }}">{{ $category->nama }}</option>
+                <option value="-" disabled>Main Category</option>
+                @foreach ($main_categories as $mc)
+                    <option value="{{ $mc->idcategories }}">&emsp;<span id="mc_text">{{ $mc->nama }}</span></option>
+                @endforeach
+                <option value="-" disabled>Sub Category</option>
+                @foreach ($sub_categories as $sc)
+                    <option value="{{ $sc->idcategories }}">&emsp;<span id="sc_text">{{ $sc->nama }}</span></option>
                 @endforeach
             </select>
         </div>
         <div class="form-group">
-            <label for="productBrand">Brand Produk</label><br>
-            <select name="productBrand" id="productBrand">
-                <option value="-" selected disabled hidden>Choose Brand</option>
-                @foreach ($brands as $brand)
-                    <option value="{{ $brand->idbrands }}">{{ $brand->nama }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="productPrice">Harga Produk</label>
-            <input type="number" id="productPrice" placeholder="Enter the new product price">
+            <label for="categoryName">Nama Kategori</label>
+            <input type="text" id="categoryName" placeholder="Enter the new product name">
         </div>
         <button class="btn btn-primary" id="submit">Submit</button>
     </form>
 
     {{-- Modal --}}
     {{-- Modal Notif --}}
-    <div class="modal fade" id="Notif" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="Notif" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="NotifLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="NotifLabel">Notification</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body flex">
                     <h4><span id='notif'></span></h4>
                 </div>
                 <div class="modal-footer">
                     {{-- button ok --}}
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
                 </div>
             </div>
         </div>
@@ -75,22 +68,16 @@
         $(document).ready(function() {
             $('#submit').click(function(e) {
                 e.preventDefault();
-                let product_name = $("#productName").val().trim();
-                let product_desc = $("#productDesc").val().trim();
-                let category_id = $("#productCategory option:selected").val();
-                let brand_id = $("#productBrand option:selected").val();
-                let product_price = parseInt($("#productPrice").val());
+                let parent_category_id = $("#parent_category option:selected").val();
+                let category_name = $("#categoryName").val().trim();
 
                 $.ajax({
                     type: 'POST',
-                    url: "{{ route('home.store') }}",
+                    url: "{{ route('category.store') }}",
                     data: {
-                        '_token': $('meta[name=csrf-token]').attr("content"),
-                        'product_name': product_name,
-                        'product_description': product_desc,
-                        'category_id': category_id,
-                        'brand_id': brand_id,
-                        'product_price': product_price,
+                        '_token': '<?php echo csrf_token(); ?>',
+                        'parent_category_id': parent_category_id,
+                        'category_name': category_name,
                     },
                     success: function(data) {
                         $('#notif').text(data.msg)
