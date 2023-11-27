@@ -19,9 +19,12 @@ use App\Http\Controllers\ReportproductController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+// Authentication
+Route::get('/login', 'AuthenticationController@create')
+    ->name('login.create');
+
+Route::post('/login', 'AuthenticationController@store')
+    ->name('login.store');
 
 Route::get('/', function () {
     return redirect('/home');
