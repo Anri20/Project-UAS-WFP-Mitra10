@@ -50,10 +50,17 @@ Route::get('/admin', function () {
 })->name('home.admin');
 
 // Product
+Route::get('/product/admin/index', 'ProductController@indexAdmin')->name('adminIndexProduct');
+Route::post('/getUpdate', 'ProductController@getUpdate')->name('getUpdate');
 Route::get('/createNewProduct', 'ProductController@createProductPage')->name('createNewProduct');
+Route::post('/product/admin/update', 'ProductController@updateProduct')->name('updateProduct');
+Route::post('/product/admin/delete', 'ProductController@deleteProduct')->name('deleteProduct');
 
 // Category
+Route::get('/category/admin/index', 'CategoryController@indexAdmin')->name('adminIndexCategory');
 Route::get('/createNewCategory', 'CategoryController@createCategoryPage')->name('createNewCategory');
+Route::post('/category/admin/update', 'CategoryController@updateCategory')->name('updateCategory');
+Route::post('/category/admin/delete', 'CategoryController@deleteCategory')->name('deleteCategory');
 
 // Brand
 Route::get('/brand/admin/index', 'BrandController@indexAdmin')->name('adminIndexBrand');

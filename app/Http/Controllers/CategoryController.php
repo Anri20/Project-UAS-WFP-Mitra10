@@ -182,6 +182,13 @@ class CategoryController extends Controller
         ), 200);
     }
 
+    public function indexAdmin()
+    {
+        $category = Category::all();
+
+        return view('Admin.Category.index', compact('category'));
+    }
+
     public function createCategoryPage()
     {
         $main_categories = DB::table('categories')
@@ -208,5 +215,24 @@ class CategoryController extends Controller
             ->get();
 
         return view('Admin.Category.create', compact('main_categories', 'sub_categories', 'main_sub_categories'));
+    }
+
+    public function updateCategory(Request $request)
+    {
+        $categoryName = $request->get('categoryName');
+        $newCategoryName = $request->get('newCategoryName');
+
+        DB::table('categories')->where('nama', $categoryName)->update(['nama' => $newCategoryName]);
+
+        return response()->json(["msg" => "Data has been updated successfully!!!"], 200);
+    }
+
+    public function deleteCategory(Request $request)
+    {
+        $categoryName = $request->get('categoryName');
+
+        Category::where('nama', $categoryName)->delete();
+
+        return response()->json(["msg" => "Data has been deleted successfully!!!"], 200);
     }
 }

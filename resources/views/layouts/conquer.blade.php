@@ -548,12 +548,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="">
+                                <a href="{{ route('adminIndexProduct') }}">
                                     <i class="icon-anchor"></i>
                                     Product</a>
                             </li>
                             <li>
-                                <a href="">
+                                <a href="{{ route('adminIndexCategory') }}">
                                     <i class="icon-anchor"></i>
                                     Category</a>
                             </li>

@@ -105,6 +105,29 @@ class ProductController extends Controller
         //
     }
 
+    public function indexAdmin()
+    {
+        $product = Product::all();
+
+        return view('Admin.Product.index', compact('product'));
+    }
+
+    public function getUpdate()
+    {
+        $data = [];
+
+        $categories = DB::table('categories as c')
+            ->get();
+
+        $brands = DB::table('brands as b')
+            ->get();
+
+        $data['categories'] = $categories;
+        $data['brands'] = $brands;
+
+        return response()->json(["data" => $data], 200);
+    }
+
     public function createProductPage()
     {
         $categories = DB::table('categories as c')
@@ -115,5 +138,36 @@ class ProductController extends Controller
             ->get();
 
         return view("Admin.Product.create", compact('categories', 'brands'));
+    }
+
+    public function updateProduct(Request $request)
+    {
+        $productName = $request->get('productName');
+        $newProductName = $request->get('newProductName');
+        $productDesc = $request->get('productDesc');
+        $productCategory_id = $request->get('productCategory_id');
+        $productBrand_id = $request->get('productBrand_id');
+        $productPrice = $request->get('productPrice');
+
+        DB::table('products')
+            ->where('nama', $productName)
+            ->update([
+                'nama' => $newProductName,
+                'deskripsi' => $productDesc,
+                'category_id' => $productCategory_id,
+                'brand_id' => $productBrand_id,
+                'harga' => $productPrice,
+            ]);
+
+        return response()->json(["msg" => "Data has been updated successfully!!!"], 200);
+    }
+
+    public function deleteProduct(Request $request)
+    {
+        $productName = $request->get('productName');
+
+        Product::where('nama', $productName)->delete();
+
+        return response()->json(["msg" => "Data has been deleted successfully!!!"], 200);
     }
 }
