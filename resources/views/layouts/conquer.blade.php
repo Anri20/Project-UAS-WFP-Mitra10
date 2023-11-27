@@ -538,6 +538,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <i class="icon-anchor"></i>
                                     Brand</a>
                             </li>
+                            <li>
+                                <a href="{{ route('customers.create') }}">
+                                    <i class="icon-anchor"></i>
+                                    Customer</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="">
@@ -561,6 +566,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <a href="{{ route('adminIndexBrand') }}">
                                     <i class="icon-anchor"></i>
                                     Brand</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('customers.index') }}">
+                                    <i class="icon-anchor"></i>
+                                    Customer</a>
                             </li>
                         </ul>
                     </li>
