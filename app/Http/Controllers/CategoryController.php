@@ -44,7 +44,7 @@ class CategoryController extends Controller
 
         // dd($sub_categories);
 
-        return view('Category.index', compact('categories'));
+        return view('Category.index', compact('parent_categories', 'sub_categories', 'child_categories'));
     }
 
     /**
