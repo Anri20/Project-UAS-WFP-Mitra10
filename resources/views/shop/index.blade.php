@@ -1,4 +1,4 @@
-@extends('Week6.layouts.conquer')
+@extends('layouts.conquer')
 
 @section('content')
 <div class="container py-5 h-100">
@@ -21,7 +21,7 @@
             </div>
 
             <div class="text-center pt-3 pb-2">
-                <td><a href="#promoscreate" class="btn btn-primary" data-toggle='modal'>tambah promos +</a></td>
+                <td><a href="#promoscreate" class="btn btn-primary" data-toggle='modal'>tambah Shop +</a></td>
             </div>
 
             <div class="modal fade" id="promoscreate" tabindex="-1" role="basic" aria-hidden="true">
@@ -30,7 +30,7 @@
                     <div class="modal-header">
                       <button type="button" class="close"
                         data-dismiss="modal" aria-hidden="true"></button>
-                      <h4 class="modal-title">Add New promos</h4>
+                      <h4 class="modal-title">Add New Shop</h4>
                     </div>
                     <div class="modal-body">
 

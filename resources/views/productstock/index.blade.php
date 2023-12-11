@@ -1,4 +1,4 @@
-@extends('Week6.layouts.conquer')
+@extends('layouts.conquer')
 
 {{-- @section('tes')
 <h2>our kategori

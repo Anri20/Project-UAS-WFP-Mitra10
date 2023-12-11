@@ -539,6 +539,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                     Brand</a>
                             </li>
                             <li>
+                                <a href="{{ route('promos.create') }}">
+                                    <i class="icon-anchor"></i>
+                                    Promos</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('customers.create') }}">
                                     <i class="icon-anchor"></i>
                                     Customer</a>

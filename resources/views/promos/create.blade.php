@@ -1,4 +1,4 @@
-@extends('Week6.layouts.conquer')
+@extends('layouts.conquer')
 
 @section('content')
 <div class="container py-5 h-100">
