@@ -1,4 +1,4 @@
-@extends('Week6.layouts.conquer')
+@extends('layouts.conquer')
 
 @section('content')
 <div class="container py-5 h-100">
@@ -26,6 +26,7 @@
               <tr>
                 <th scope="col">Nama promo</th>
                 <th scope="col">diskon</th>
+                <th scope="col">Gambar</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>

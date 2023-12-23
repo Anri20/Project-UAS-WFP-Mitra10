@@ -1,4 +1,4 @@
-@extends('Week6.layouts.conquer')
+@extends('layouts.conquer')
 
 @section('content')
 <div class="container py-5 h-100">
@@ -48,7 +48,7 @@
                         <option value="{{ $row->idshopareas}}">{{ $row->nama}}</option>
                     @endforeach
                 </select>
-            </div>\
+            </div>
 
             <button type="submit" class="btn btn_primary">submit</button>
         </form>

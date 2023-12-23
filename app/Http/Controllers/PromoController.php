@@ -92,7 +92,9 @@ class PromoController extends Controller
     public function update(Request $request, $id)
     {
         $foto1 = $request->file('foto1');
-        $extfoto1= $foto1->getClientOriginalExtension();
+        if($foto1 != null )
+        {
+            $extfoto1= $foto1->getClientOriginalExtension();
         $newfoto1= date("Ymd_His")."foto1.".$extfoto1;
         $foto1->move('uploads/foto',$newfoto1);
         $fotoPath1 = 'uploads/foto/'.$newfoto1;
@@ -103,9 +105,22 @@ class PromoController extends Controller
                 'deskripsi' => $request->deskripsi,
                 'kode' => $request->kode,
                 'diskon' => $request->diskon,
-                'gambar' => $fotoPath1,
+                 'gambar' => $fotoPath1,
             ]
         );
+        } else
+        {
+
+        DB::table('promos')->where('idpromos',$id)->update(
+            [
+                'nama' => $request->namapromos,
+                'deskripsi' => $request->deskripsi,
+                'kode' => $request->kode,
+                'diskon' => $request->diskon
+            ]
+        );
+        }
+
     return redirect('/promos')->with('status', 'trueinsert');
     }
 

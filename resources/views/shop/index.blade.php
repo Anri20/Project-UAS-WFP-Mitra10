@@ -14,11 +14,11 @@
               <h2 class="my-4">Toko</h2>
             </div>
 
-            <div class="text-center pt-3 pb-2">
+            {{-- <div class="text-center pt-3 pb-2">
                 <td><a href="{{URL::to('/')}}/shop/create">
                     <i class="icon-book-open"></i>
                     add shop</a></td>
-            </div>
+            </div> --}}
 
             <div class="text-center pt-3 pb-2">
                 <td><a href="#promoscreate" class="btn btn-primary" data-toggle='modal'>tambah Shop +</a></td>
@@ -96,9 +96,9 @@
                     <td class="align-middle">
                         <h6 class="mb-0">{{$show->nomor_whatsapp}}</h6>
                         </td>
-                    <td class="align-middle">
+                    {{-- <td class="align-middle">
                         <button type="button" class="btn btn-primary">Beli di sini</button>
-                    </td>
+                    </td> --}}
 
                     <td><a href="#detail{{$show->idshops}}" class="btn btn-primary" data-toggle='modal'>detail toko</a></td>
 

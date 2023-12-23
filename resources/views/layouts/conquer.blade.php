@@ -539,6 +539,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                     Brand</a>
                             </li>
                             <li>
+                                <a href="{{ route('shop.index') }}">
+                                    <i class="icon-anchor"></i>
+                                    Shop</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('promos.create') }}">
                                     <i class="icon-anchor"></i>
                                     Promos</a>
@@ -566,6 +571,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <a href="{{ route('adminIndexCategory') }}">
                                     <i class="icon-anchor"></i>
                                     Category</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('promos.index') }}">
+                                    <i class="icon-anchor"></i>
+                                    Promos</a>
                             </li>
                             <li>
                                 <a href="{{ route('adminIndexBrand') }}">

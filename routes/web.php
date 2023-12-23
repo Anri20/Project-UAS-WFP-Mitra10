@@ -41,7 +41,9 @@ Route::post('/category/display', 'CategoryController@displayCategories')->name('
 Route::resource('review', 'ReviewController');
 Route::resource('shop', 'ShopController');
 Route::resource('productstock', 'ProductStockController');
+
 Route::resource('promos', 'PromoController');
+
 
 // ======================================================== Admin ====================================================================
 // Home
