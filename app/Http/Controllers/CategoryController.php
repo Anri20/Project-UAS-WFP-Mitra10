@@ -15,36 +15,37 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $parent_categories = DB::table('categories')
-            ->where('parent_category_id', null)
-            ->select('nama')
-            ->get();
+        // $parent_categories = DB::table('categories')
+        //     ->where('parent_category_id', null)
+        //     ->get();
 
-        $child_categories = DB::table('categories as c')
-            ->join('categories as c1', 'c.parent_category_id', 'c1.idcategories')
-            ->join('categories as c2', 'c1.parent_category_id', 'c2.idcategories')
-            ->distinct()
-            ->select('c.nama')
-            ->get();
+        // $child_categories = DB::table('categories as c')
+        //     ->join('categories as c1', 'c.parent_category_id', 'c1.idcategories')
+        //     ->join('categories as c2', 'c1.parent_category_id', 'c2.idcategories')
+        //     ->distinct()
+        //     ->select('c.nama')
+        //     ->get();
 
-        $subquery1 = DB::table('categories as c')
-            ->join('categories as c1', 'c.parent_category_id', 'c1.idcategories')
-            ->join('categories as c2', 'c1.parent_category_id', 'c2.idcategories')
-            ->distinct()
-            ->select('c.nama');
+        // $subquery1 = DB::table('categories as c')
+        //     ->join('categories as c1', 'c.parent_category_id', 'c1.idcategories')
+        //     ->join('categories as c2', 'c1.parent_category_id', 'c2.idcategories')
+        //     ->distinct()
+        //     ->select('c.nama');
 
-        $subquery2 = DB::table('categories')
-            ->where('parent_category_id', null)
-            ->select('nama');
+        // $subquery2 = DB::table('categories')
+        //     ->where('parent_category_id', null)
+        //     ->select('nama');
 
-        $sub_categories = DB::table('categories')
-            ->whereNotIn('nama', $subquery1)
-            ->whereNotIn('nama', $subquery2)
-            ->get();
+        // $sub_categories = DB::table('categories')
+        //     ->whereNotIn('nama', $subquery1)
+        //     ->whereNotIn('nama', $subquery2)
+        //     ->get();
 
         // dd($sub_categories);
 
-        return view('Category.index', compact('parent_categories', 'sub_categories', 'child_categories'));
+        $categories = Category::where('parent_category_id', null)->get();
+
+        return view('Category.index', compact('categories'));
     }
 
     /**
@@ -152,17 +153,19 @@ class CategoryController extends Controller
 
     public function displayCategories(Request $request)
     {
-        $namaKategori = $request->get('parentKategori');
-
-        $sub_categories = DB::table('categories as c')
-            ->join('categories as c1', 'c.parent_category_id', 'c1.idcategories')
-            ->where('c1.nama', $namaKategori)
-            ->get();
+        $parent_category = $request->get('parentKategori');
 
         $child_categories = DB::table('categories as c')
             ->join('categories as c1', 'c.parent_category_id', 'c1.idcategories')
             ->join('categories as c2', 'c1.parent_category_id', 'c2.idcategories')
-            ->where('c2.nama', 'Appliances')
+            ->distinct()
+            ->select('c.nama')
+            ->get();
+
+        $sub_categories = DB::table('categories as c')
+            ->join('categories as sc', 'c.idcategories', 'sc.parent_category_id')
+            ->where('c.nama', $parent_category)
+            ->select('sc.nama')
             ->get();
 
         return response()->json([

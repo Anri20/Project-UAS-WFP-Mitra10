@@ -35,6 +35,8 @@
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
 
+    @yield('css')
+
     @yield('head')
 </head>
 

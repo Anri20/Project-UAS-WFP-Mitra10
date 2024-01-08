@@ -648,8 +648,14 @@ License: You must have a valid license purchased only from themeforest(the above
                             </li>
                         </ul>
                     </li> --}}
+                    <li class="">
+                        <a href="{{ route('homepage') }}">
+                            <i class=""></i>
+                            <span class="title">Client</span>
+                        </a>
+                    </li>
                     <li class="last ">
-                        <a href="login.html">
+                        <a href="">
                             <i class="icon-user"></i>
                             <span class="title">Login</span>
                         </a>
