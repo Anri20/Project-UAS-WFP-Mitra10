@@ -27,7 +27,7 @@ Route::post('/login', 'AuthenticationController@store')
     ->name('login.store');
 
 Route::get('/', function () {
-    return redirect('/home');
+    return redirect('/login');
 })->name('homepage');
 
 Route::resource('home', 'ProductController');

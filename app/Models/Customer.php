@@ -21,6 +21,11 @@ class Customer extends Model
         return $this->hasMany(Review::class, 'customer_id', 'idcustomers');
     }
 
+    public function membership()
+    {
+        return $this->belongsTo(Membership::class, 'customer_id', 'idcustomers');
+    }
+
     public function namaLengkap()
     {
         return $this->nama_depan . ' ' . $this->nama_belakang;
