@@ -97,7 +97,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white" style="padding-left:0.5em" aria-current="page"
-                            href="{{ route('home.index') }}"> <i class="fa-regular fa-credit-card"></i>&nbsp;
+                            href="{{URL::to('/')}}/membership"> <i class="fa-regular fa-credit-card"></i>&nbsp;
                             Membership</a>
                     </li>
                     <li class="nav-item">

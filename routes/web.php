@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductStockController;
 use App\Http\Controllers\PromosController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReportproductController;
+use App\Http\Controllers\MembershipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,3 +82,7 @@ Route::get('transactions/popover/{transaction}/items', 'TransactionController@it
 Route::post('transactions/alert', 'TransactionController@alert')->name('transaction.alert');
 Route::get('/transactions/top', 'TransactionController@top');
 Route::resource('transactions', 'TransactionController');
+Route::resource('membership', 'MembershipController');
+
+Route::get('/detailmembership/{id}', 'MembershipController@detailbelaja');
+Route::get('/detailitem/{id}', 'MembershipController@detailitem');
