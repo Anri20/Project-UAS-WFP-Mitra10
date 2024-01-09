@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Brand;
-use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,10 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(UserSeeder::class);
+
         $this->call(BrandSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(ProductSeeder::class);
-        
+
         $this->call(CustomerSeeder::class);
         $this->call(CartSeeder::class);
         $this->call(TransactionSeeder::class);
@@ -29,8 +29,5 @@ class DatabaseSeeder extends Seeder
         $this->call(ShopAreaSeeder::class);
         $this->call(ShopSeeder::class);
         $this->call(ProductStockSeeder::class);
-
-        $this->call(RoleSeeder::class);
-        $this->call(RoleUserSeeder::class);
     }
 }
