@@ -170,4 +170,28 @@ class ProductController extends Controller
 
         return response()->json(["msg" => "Data has been deleted successfully!!!"], 200);
     }
+
+    public function getProductCategory(Request $request)
+    {
+        $category = $request->get('category');
+        $type = $request->get('type');
+        $products = [];
+
+        if($type == 1){
+            $products = DB::table('products as p')
+                ->join('categories as cc', 'p.category_id', 'cc.idcategories')
+                ->join('categories as sc', 'cc.parent_category_id', 'sc.idcategories')
+                ->where('sc.nama', $category)
+                ->select('*', 'p.nama as namaProduct', 'cc.nama as namaKategori')
+                ->get();
+        }else if ($type == 2){
+            $products = DB::table('products as p')
+                ->join('categories as cc', 'p.category_id', 'cc.idcategories')
+                ->where('cc.nama', $category)
+                ->select('*', 'p.nama as namaProduct', 'cc.nama as namaKategori')
+                ->get();
+        }
+        // dd($products);
+        return response()->json(['products' => $products], 200);
+    }
 }

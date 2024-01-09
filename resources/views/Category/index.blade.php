@@ -14,6 +14,20 @@
         td {
             padding: 5px;
         }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-auto-rows: auto;
+        }
+
+        .grid-container-child {
+            display: grid;
+            grid-template-columns: auto;
+            grid-auto-rows: auto;
+        }
+
+        .grid-item {}
     </style>
 @endsection
 
@@ -23,25 +37,29 @@
             <tbody>
                 @foreach ($categories as $c)
                     <tr>
-                        <th class="parent">{{ $c->nama }}</th>
+                        <th>
+                            <span class="parent">{{ $c->nama }}</span>
+                        </th>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <table style="width: 100%;">
-            <tbody class="sub_categories">
-                <tr>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="grid-container sub_categories" style="width: 100%; border: solid black 1px;">
+
+        </div>
+    </div>
+
+    <div class="grid-container">
+
     </div>
 
     <script>
-        function displayProduct() {
-            console.log('test')
+        function displayProduct(category, type) {
+            localStorage.setItem('category', category)
+            localStorage.setItem('type', type)
+            window.location = "{{ route('home.index') }}"
         }
-        
+
         $(document).ready(function() {
 
             $('.parent').click(function() {
@@ -55,32 +73,30 @@
                     success: function(data) {
                         // alert('success')
                         $('.sub_categories').html('')
+                        console.log(data)
 
-                        let nama_count = 0
-                        let row = ''
-                        let row_count = 0
-                        $.each(data.sub_categories, function(index, value) {
-                            row +=
-                                `<td style='width:33%; cursor: pointer;' onclick='displayProduct()'>${value.nama}</td>`
-                            nama_count += 1
-
-                            if (nama_count == 3 || value.nama == data.sub_categories[
-                                    data.sub_categories.length - 1].nama) {
-                                $('.sub_categories').append(
-                                    `<tr style='padding: 5px;'>${row}</tr>`)
-                                row = ''
-                                nama_count = 0
-                                row_count += 1
-                            }
-
-                            if (value.nama == data.sub_categories[data.sub_categories
-                                    .length - 1].nama) {
-                                // console.log('print row tambahan')
-                                for (let i = 0; i < (12 - row_count); i++) {
-                                    $('.sub_categories').append(
-                                        `<tr><td style='padding: 17px;'></td></tr>`)
+                        let child_categories = ''
+                        $.each(data.sub_categories, function(sub_index, sub_value) {
+                            $.each(data.child_categories, function(child_index,
+                                child_value) {
+                                if (sub_value.nama == child_value
+                                    .sub_categories) {
+                                    child_categories += `
+                                    <div class='grid-item' style='font-size: 12px; cursor: pointer;''>
+                                        <span onclick='displayProduct(this.innerHTML, 2)'>${(child_value.child_categories != null) ? child_value.child_categories : ''}</span>
+                                    </div>`
                                 }
-                            }
+                            })
+
+                            $('.sub_categories').append(`
+                            <div class='grid-item' style='cursor: pointer;'>
+                                <span onclick='displayProduct(this.innerHTML, 1)'>${sub_value.nama}</span>
+                                <div class='grid-container-child'>
+                                    ${child_categories}
+                                </div>
+                            </div>`)
+
+                            child_categories = ''
                         })
                     },
                     error: function() {

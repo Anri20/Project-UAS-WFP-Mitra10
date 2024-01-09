@@ -16,10 +16,7 @@ class CreateMembershipsTable extends Migration
         Schema::create('memberships', function (Blueprint $table) {
             $table->unsignedBigInteger('idmembership')->autoIncrement();
             $table->string("nama");
-<<<<<<< Updated upstream
             $table->foreignId('customer_id')->nullable()->constrained('customers', 'idcustomers');
-=======
->>>>>>> Stashed changes
             $table->timestamps();
         });
     }

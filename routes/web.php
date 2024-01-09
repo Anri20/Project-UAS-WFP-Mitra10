@@ -58,6 +58,7 @@ Route::post('/getUpdate', 'ProductController@getUpdate')->name('getUpdate');
 Route::get('/createNewProduct', 'ProductController@createProductPage')->name('createNewProduct');
 Route::post('/product/admin/update', 'ProductController@updateProduct')->name('updateProduct');
 Route::post('/product/admin/delete', 'ProductController@deleteProduct')->name('deleteProduct');
+Route::post('/product/get/category', 'ProductController@getProductCategory')->name('getProductCategory');
 
 // Category
 Route::get('/category/admin/index', 'CategoryController@indexAdmin')->name('adminIndexCategory');

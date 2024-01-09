@@ -156,16 +156,18 @@ class CategoryController extends Controller
         $parent_category = $request->get('parentKategori');
 
         $child_categories = DB::table('categories as c')
-            ->join('categories as c1', 'c.parent_category_id', 'c1.idcategories')
-            ->join('categories as c2', 'c1.parent_category_id', 'c2.idcategories')
-            ->distinct()
-            ->select('c.nama')
+            ->join('categories as sc', 'c.idcategories', 'sc.parent_category_id')
+            ->leftJoin('categories as cc', 'sc.idcategories', 'cc.parent_category_id')
+            ->where('c.nama', $parent_category)
+            ->select("sc.nama as sub_categories", "cc.nama as child_categories")
+            ->orderBy("sc.idcategories")
             ->get();
 
         $sub_categories = DB::table('categories as c')
             ->join('categories as sc', 'c.idcategories', 'sc.parent_category_id')
             ->where('c.nama', $parent_category)
             ->select('sc.nama')
+            ->orderBy('sc.idcategories')
             ->get();
 
         return response()->json([
