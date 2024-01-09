@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -40,6 +41,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Gate::allows('manage-product')) {
+            abort(403);
+        }
+
         $product_name = $request->get('product_name');
         $product_desc = $request->get('product_description');
         $category_id = $request->get('category_id');
@@ -107,6 +112,10 @@ class ProductController extends Controller
 
     public function indexAdmin()
     {
+        if (!Gate::allows('manage-product')) {
+            abort(403);
+        }
+
         $product = Product::all();
 
         return view('Admin.Product.index', compact('product'));
@@ -114,6 +123,10 @@ class ProductController extends Controller
 
     public function getUpdate()
     {
+        if (!Gate::allows('manage-product')) {
+            abort(403);
+        }
+
         $data = [];
 
         $categories = DB::table('categories as c')
@@ -130,6 +143,10 @@ class ProductController extends Controller
 
     public function createProductPage()
     {
+        if (!Gate::allows('manage-product')) {
+            abort(403);
+        }
+
         $categories = DB::table('categories as c')
             ->whereNotNull('parent_category_id')
             ->get();
@@ -142,6 +159,10 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request)
     {
+        if (!Gate::allows('manage-product')) {
+            abort(403);
+        }
+
         $productName = $request->get('productName');
         $newProductName = $request->get('newProductName');
         $productDesc = $request->get('productDesc');
@@ -164,6 +185,10 @@ class ProductController extends Controller
 
     public function deleteProduct(Request $request)
     {
+        if (!Gate::allows('manage-product')) {
+            abort(403);
+        }
+
         $productName = $request->get('productName');
 
         Product::where('nama', $productName)->delete();

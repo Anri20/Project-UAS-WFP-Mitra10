@@ -106,7 +106,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white" style="padding-left:0.5em" aria-current="page"
-                            href="{{ route('home.admin') }}"> <i class="fa-solid fa-lock"></i>&nbsp; Admin</a>
+                            href="{{ route('homepage') }}"> <i class="fa-solid fa-lock"></i>&nbsp; Admin</a>
                     </li>
                 </ul>
 

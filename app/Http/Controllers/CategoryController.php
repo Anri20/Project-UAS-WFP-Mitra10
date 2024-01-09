@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {
@@ -55,6 +56,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        if (!Gate::allows('manage-category')) {
+            abort(403);
+        }
+
         return view('Week6.Category.create');
     }
 
@@ -66,6 +71,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Gate::allows('manage-category')) {
+            abort(403);
+        }
+
         $parent_category_id = $request->get('parent_category_id');
         $category_name = $request->get('category_name');
 
@@ -131,6 +140,10 @@ class CategoryController extends Controller
 
     public function reportCatAvgPrice()
     {
+        if (!Gate::allows('manage-category')) {
+            abort(403);
+        }
+
         $categories = Category::all();
         // dd($categories);
         foreach ($categories as $c) {
@@ -181,14 +194,19 @@ class CategoryController extends Controller
         $cat = Category::find($_POST['category_id']);
         $nama = $cat->nama_kategori;
         $data = $cat->products;
-        return response()->json(array(
-            'status' => 'oke',
-            'msg' => view('category.showProducts', compact('nama', 'data'))->render()
-        ), 200);
+        return response()->json(
+            array(
+                'status' => 'oke',
+                'msg' => view('category.showProducts', compact('nama', 'data'))->render()
+            ), 200);
     }
 
     public function indexAdmin()
     {
+        if (!Gate::allows('manage-category')) {
+            abort(403);
+        }
+
         $category = Category::all();
 
         return view('Admin.Category.index', compact('category'));
@@ -196,6 +214,10 @@ class CategoryController extends Controller
 
     public function createCategoryPage()
     {
+        if (!Gate::allows('manage-category')) {
+            abort(403);
+        }
+
         $main_categories = DB::table('categories')
             ->where('parent_category_id', null)
             ->get();
@@ -224,6 +246,10 @@ class CategoryController extends Controller
 
     public function updateCategory(Request $request)
     {
+        if (!Gate::allows('manage-category')) {
+            abort(403);
+        }
+
         $categoryName = $request->get('categoryName');
         $newCategoryName = $request->get('newCategoryName');
 
@@ -234,6 +260,10 @@ class CategoryController extends Controller
 
     public function deleteCategory(Request $request)
     {
+        if (!Gate::allows('manage-category')) {
+            abort(403);
+        }
+
         $categoryName = $request->get('categoryName');
 
         Category::where('nama', $categoryName)->delete();

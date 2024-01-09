@@ -511,7 +511,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </form>
                     </li>
                     <li class="start active ">
-                        <a href="{{ route('home.admin') }}">
+                        <a href="{{ route('homepage') }}">
                             <i class="icon-home"></i>
                             <span class="title">Dashboard</span>
                         </a>

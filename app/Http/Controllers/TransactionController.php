@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class TransactionController extends Controller
 {
     public function index()
     {
+        if (!Gate::allows('manage-transaction')) {
+            abort(403);
+        }
+
         $transactions =
             Transaction::with(['customer', 'items', 'items.product'])
                 ->orderBy('tanggal', 'desc')
@@ -26,6 +31,10 @@ class TransactionController extends Controller
 
     public function items_popover(Transaction $transaction)
     {
+        if (!Gate::allows('manage-transaction')) {
+            abort(403);
+        }
+
         $transaction->load(['items', 'items.product']);
         return view(
             'transaction.items_popover',
@@ -37,6 +46,10 @@ class TransactionController extends Controller
 
     public function alert()
     {
+        if (!Gate::allows('manage-transaction')) {
+            abort(403);
+        }
+
         return view('transaction/alert');
     }
 
@@ -108,6 +121,10 @@ class TransactionController extends Controller
 
     public function top()
     {
+        if (!Gate::allows('manage-transaction')) {
+            abort(403);
+        }
+
         $customers = DB::table('transactions')
             ->selectRaw('SUM(transactions.total) AS total, customers.nama_depan, customers.nama_belakang, customers.email, customers.nomor_whatsapp')
             ->join('customers', 'customers.idcustomers', '=', 'transactions.customer_id')

@@ -8,6 +8,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
@@ -15,17 +16,29 @@ class CustomerController extends Controller
 {
     public function index()
     {
+        if (!Gate::allows('manage-transaction')) {
+            abort(403);
+        }
+
         $customers = Customer::all();
         return view('customer.index', compact('customers'));
     }
 
     public function create()
     {
+        if (!Gate::allows('manage-transaction')) {
+            abort(403);
+        }
+
         return view('customer.create');
     }
 
     public function store(Request $request)
     {
+        if (!Gate::allows('manage-transaction')) {
+            abort(403);
+        }
+
         $validated = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -91,11 +104,19 @@ class CustomerController extends Controller
 
     public function edit(Customer $customer)
     {
+        if (!Gate::allows('manage-transaction')) {
+            abort(403);
+        }
+
         return view('customer.edit', compact('customer'));
     }
 
     public function update(Request $request, Customer $customer)
     {
+        if (!Gate::allows('manage-transaction')) {
+            abort(403);
+        }
+
         $validated = $request->validate([
             'email' => 'nullable|email|unique:customers',
             'whatsapp_number' => 'nullable|starts_with:+|unique:customers,nomor_whatsapp',
@@ -162,11 +183,19 @@ class CustomerController extends Controller
 
     public function destroy(Customer $customer)
     {
+        if (!Gate::allows('manage-transaction')) {
+            abort(403);
+        }
+
         $customer->delete();
     }
 
     public function modal_edit(Customer $customer)
     {
+        if (!Gate::allows('manage-transaction')) {
+            abort(403);
+        }
+
         return view('customer.modal.edit', compact('customer'));
     }
 }

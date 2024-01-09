@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class BrandController extends Controller
 {
@@ -44,6 +45,10 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Gate::allows('manage-brand')) {
+            abort(403);
+        }
+
         $brand_name = $request->get('brand_name');
 
         DB::table('brands')->insert([
@@ -100,6 +105,10 @@ class BrandController extends Controller
 
     public function indexAdmin()
     {
+        if (!Gate::allows('manage-brand')) {
+            abort(403);
+        }
+
         $brands = Brand::orderBy('nama')->get();
         // dd($brands);
         // var_dump($brands);
@@ -109,11 +118,19 @@ class BrandController extends Controller
 
     public function createBrandPage()
     {
+        if (!Gate::allows('manage-brand')) {
+            abort(403);
+        }
+
         return view("Admin.Brand.create");
     }
 
     public function updateBrand(Request $request)
     {
+        if (!Gate::allows('manage-brand')) {
+            abort(403);
+        }
+
         $brandName = $request->get('brandName');
         $newBrandName = $request->get('newBrandName');
 
@@ -124,6 +141,10 @@ class BrandController extends Controller
 
     public function deleteBrand(Request $request)
     {
+        if (!Gate::allows('manage-brand')) {
+            abort(403);
+        }
+
         $brandName = $request->get('brandName');
 
         Brand::where('nama', $brandName)->delete();
