@@ -8,7 +8,7 @@
                 <div class="row">
                     @foreach ($brandtype as $brand)
                         <div class="col-3">
-                            {{ $brand->nama }}
+                            <span class="brand" style="cursor: pointer;">{{ $brand->nama }}</span>
                         </div>
                     @endforeach
                 </div>
@@ -16,4 +16,14 @@
             @endforeach
         </div>
     </main>
+    <script>
+        $(document).ready(function() {
+            $('.brand').click(function(){
+                let namaBrand = $(this).text();
+                // console.log(namaBrand)
+                localStorage.setItem('brand', namaBrand)
+                window.location = "{{ route('home.index') }}"
+            })
+        })
+    </script>
 @endsection

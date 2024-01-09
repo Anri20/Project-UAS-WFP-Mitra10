@@ -97,7 +97,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white" style="padding-left:0.5em" aria-current="page"
-                            href="{{URL::to('/')}}/membership"> <i class="fa-regular fa-credit-card"></i>&nbsp;
+                            href="{{ URL::to('/') }}/membership"> <i class="fa-regular fa-credit-card"></i>&nbsp;
                             Membership</a>
                     </li>
                     <li class="nav-item">
@@ -142,3 +142,28 @@
 </body>
 
 </html>
+
+<script>
+    //disable inspect
+    // document.addEventListener('contextmenu', function(e) {
+    //     e.preventDefault();
+    // });
+
+    // document.onkeydown = function(e) {
+    //     if (e.which === 123) {
+    //         return false;
+    //     }
+    //     if (e.ctrlKey && e.shiftKey && e.key == 'I') {
+    //         e.preventDefault();
+    //     }
+    //     if (e.ctrlKey && e.shiftKey && e.key == 'C') {
+    //         e.preventDefault();
+    //     }
+    //     if (e.ctrlKey && e.shiftKey && e.key == 'J') {
+    //         e.preventDefault();
+    //     }
+    //     if (e.ctrlKey && e.key == 'U') {
+    //         e.preventDefault();
+    //     }
+    // };
+</script>

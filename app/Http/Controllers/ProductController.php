@@ -177,20 +177,42 @@ class ProductController extends Controller
         $type = $request->get('type');
         $products = [];
 
-        if($type == 1){
+        if ($type == 1) {
             $products = DB::table('products as p')
                 ->join('categories as cc', 'p.category_id', 'cc.idcategories')
                 ->join('categories as sc', 'cc.parent_category_id', 'sc.idcategories')
                 ->where('sc.nama', $category)
                 ->select('*', 'p.nama as namaProduct', 'cc.nama as namaKategori')
                 ->get();
-        }else if ($type == 2){
+
+            $productsSC = DB::table('products as p')
+                ->join('categories as sc', 'p.category_id', 'sc.idcategories')
+                ->where('sc.nama', $category)
+                ->select('*', 'p.nama as namaProduct', 'sc.nama as namaKategori')
+                ->get();
+        } else if ($type == 2) {
             $products = DB::table('products as p')
                 ->join('categories as cc', 'p.category_id', 'cc.idcategories')
                 ->where('cc.nama', $category)
                 ->select('*', 'p.nama as namaProduct', 'cc.nama as namaKategori')
                 ->get();
         }
+        // dd($products);
+        return response()->json(['products' => $products, 'productsSC' => $productsSC], 200);
+    }
+
+    public function getBrandCategory(Request $request)
+    {
+        $brand = $request->get('brand');
+        $products = [];
+
+        $products = DB::table('products as p')
+            ->join('categories as cc', 'p.category_id', 'cc.idcategories')
+            ->join('brands as b', 'p.brand_id', 'b.idbrands')
+            ->where('b.nama', $brand)
+            ->select('*', 'p.nama as namaProduct', 'b.nama as namaBrand', 'cc.nama as namaKategori')
+            ->get();
+
         // dd($products);
         return response()->json(['products' => $products], 200);
     }
