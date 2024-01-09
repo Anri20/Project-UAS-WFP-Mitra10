@@ -176,6 +176,7 @@ class ProductController extends Controller
         $category = $request->get('category');
         $type = $request->get('type');
         $products = [];
+        $productsSC = [];
 
         if ($type == 1) {
             $products = DB::table('products as p')
