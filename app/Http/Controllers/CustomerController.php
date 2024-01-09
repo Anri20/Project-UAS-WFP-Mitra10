@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Role;
+use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
@@ -44,7 +48,26 @@ class CustomerController extends Controller
         $customer->jenis_kelamin = $validated['sex'];
         $customer->alamat = $validated['address'];
 
-        $success = $customer->save();
+        $user = new User;
+        $user->name = "$customer->nama_depan $customer->nama_belakang";
+        $user->email = $customer->email;
+        $user->phone = $customer->nomor_whatsapp;
+        $user->password = $customer->password;
+
+        $role = new Role;
+        $role->role = 'customer';
+
+        try {
+            DB::transaction(function () use ($customer, $user, $role) {
+                $customer->save();
+                $customer->user()->save($user);
+                $user->roles()->save($role);
+            });
+
+            $success = true;
+        } catch (Exception $e) {
+            $success = false;
+        }
 
         return redirect()->route('customers.create')
             ->with('status', [
@@ -81,24 +104,52 @@ class CustomerController extends Controller
             'sex' => [Rule::in(['L', 'P'])],
         ]);
 
-        if ($value = $request->first_name)
-            $customer->nama_depan = $value;
-        if ($value = $request->last_name)
-            $customer->nama_belakang = $value;
-        if ($value = $validated['email'])
-            $customer->email = $value;
-        if ($value = $validated['whatsapp_number'])
-            $customer->nomor_whatsapp = $value;
-        if ($value = $validated['password'])
-            $customer->password = Hash::make($value);
-        if ($value = $validated['date_of_birth'])
-            $customer->tanggal_lahir = $value;
-        if ($value = $validated['sex'])
-            $customer->jenis_kelamin = $value;
-        if ($value = $request->address)
-            $customer->alamat = $value;
+        $user = $customer->user;
 
-        $success = $customer->save();
+        if ($value = $request->first_name) {
+            $customer->nama_depan = $value;
+            $user->name = "$customer->nama_depan $customer->nama_belakang";
+        }
+        if ($value = $request->last_name) {
+            $customer->nama_belakang = $value;
+            $user->name = "$customer->nama_depan $customer->nama_belakang";
+        }
+        if ($value = $validated['email']) {
+            $customer->email = $value;
+            $user->email = $customer->email;
+        }
+        if ($value = $validated['whatsapp_number']) {
+            $customer->nomor_whatsapp = $value;
+            $user->phone = $customer->nomor_whatsapp;
+        }
+        if ($value = $validated['password']) {
+            $customer->password = Hash::make($value);
+            $user->password = $customer->password;
+        }
+        if ($value = $validated['date_of_birth']) {
+            $customer->tanggal_lahir = $value;
+        }
+        if ($value = $validated['sex']) {
+            $customer->jenis_kelamin = $value;
+        }
+        if ($value = $request->address) {
+            $customer->alamat = $value;
+        }
+
+        $role = new Role;
+        $role->role = 'customer';
+
+        try {
+            DB::transaction(function () use ($customer, $user, $role) {
+                $customer->save();
+                $user->save();
+                $user->roles()->save($role);
+            });
+
+            $success = true;
+        } catch (Exception $e) {
+            $success = false;
+        }
 
         return redirect()->route('customers.edit', $customer->idcustomers)
             ->with('status', [

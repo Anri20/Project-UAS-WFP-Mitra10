@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -17,7 +16,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -26,7 +27,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -38,8 +40,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getAuthIdentifierName() {
+    protected $with = ['roles'];
+
+    public function getAuthIdentifierName()
+    {
         return 'email';
+    }
+
+    public function roles()
+    {
+        return $this->hasMany(Role::class, 'user_id', 'id');
+    }
+
+    public function isCustomer()
+    {
+        return $this->roles->contains(fn($role) => $role->role === 'customer');
+    }
+
+    public function isOwner()
+    {
+        return $this->roles->contains(fn($role) => $role->role === 'owner');
+    }
+
+    public function isStaff()
+    {
+        return $this->roles->contains(fn($role) => $role->role === 'staff');
     }
 
     public function customer()
