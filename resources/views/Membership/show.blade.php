@@ -40,9 +40,6 @@
                                     </td>
 
                                     <td><a href="{{URL::to('/')}}/detailitem/{{$show->idtransactions}}" class="btn btn-primary">Detail Items</a></td>
-
-
-
                                 </td>
                             </form>
 

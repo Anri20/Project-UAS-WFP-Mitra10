@@ -45,11 +45,14 @@
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <small class="text-muted">{{ $p->category->nama }}</small>
+                                        <button class="buy" style='width: 20%;' value="{{ $p->nama }}">Buy</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     @endforeach
+                </div>
+                <div style='position: fixed; right: 0; top: 20%; width: 15%; border: solid black 1px;' id="keranjang">
                 </div>
             </div>
         </div>
@@ -249,6 +252,27 @@
 
                 localStorage.removeItem('brand')
             }
+
+            let keranjang = []
+            let item = [] // nama, jumlah
+
+            $('.buy').click(function() {
+
+                if (keranjang.length == 0) {
+                    item['nama'] = $(this).val()
+                    item['jumlah'] = 1
+                } else {
+                    $.each(keranjang, function(index, value) {
+                        if (value.nama == $(this).val()) {
+                            item['jumlah'] += 1
+                        }
+                    })
+                }
+                keranjang.push(item)
+                console.log(keranjang)
+            })
+
+
         })
     </script>
 @endsection

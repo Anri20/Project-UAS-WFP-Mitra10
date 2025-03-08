@@ -27,7 +27,6 @@ Route::middleware(['guest'])->group(function () {
 
     Route::post('/login', 'AuthenticationController@store')
         ->name('auth.store');
-
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -38,11 +37,9 @@ Route::middleware(['auth'])->group(function () {
 
         if (request()->user()->isCustomer()) {
             return (new ProductController)->index();
-
         } else {
             return view('Admin.Home.index');
         }
-
     })->name('homepage');
 
     Route::resource('home', 'ProductController');
@@ -139,5 +136,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/detailmembership/{id}', 'MembershipController@detailbelaja');
 
     Route::get('/detailitem/{id}', 'MembershipController@detailitem');
-
 });
